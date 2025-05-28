@@ -1,0 +1,50 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.containerStart {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+}
+
+.containerOne {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 150px;
+}
+
+.containerOne img {
+    width: 700px;
+    height: auto;
+    margin-bottom: 300px;
+}
+
+.containerTwo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.buttonImg {
+    width: 150px;
+    margin: 100px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.buttonImg:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.7);
+}
+
+.buttonImg:active {
+    transform: scale(0.95);
+}
