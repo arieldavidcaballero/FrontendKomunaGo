@@ -15,8 +15,8 @@ export default function Home() {
                 </div>
 
                 <div className="containerTwo">
-                    <Link to="loginStore"> <img className="buttonImg" src={BTienda} alt="button 1" /> </Link>
-                    <Link to="/turista"> <img className="buttonImg" src={BTurista} alt="button 2" /> </Link>
+                    <Link to="/login-store"> <img className="buttonImg" src={BTienda} alt="button 1" /> </Link>
+                    <Link to="/turist-store"> <img className="buttonImg" src={BTurista} alt="button 2" /> </Link>
                 </div>
 
             </div>
