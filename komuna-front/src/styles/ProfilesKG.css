@@ -1,0 +1,318 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.containerProfiles {
+    width: 100vw;
+    height: 100vh;
+    background-color: rgb(0, 0, 0);
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+/* Header con logo y botón de retroceso */
+.containerOne {
+    width: 80vw;
+    height: 15vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logoKomuna {
+    width: 500px;
+    height: auto;
+    transition: transform 0.3s ease;
+}
+
+.back-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.back-button:hover {
+    transform: scale(1.1);
+}
+
+.buttonBack {
+    width: 100px;
+    height: auto;
+    transition: transform 0.3s ease;
+}
+
+/* Contenedor principal */
+.containerTwo {
+    width: 80vw;
+    height: 85vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ContainerChart {
+    width: 80vw;
+    height: 80vh;
+    background-color: rgb(0, 0, 0);
+    border: 6px dashed white;
+    border-radius: 3%;
+    animation: glowBorder 2s infinite ease-in-out;
+    padding: 2rem;
+}
+
+@keyframes glowBorder {
+    0% { box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff; }
+    50% { box-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff; }
+    100% { box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff; }
+}
+
+/* Sección de vistas */
+.containerTree {
+    width: 100%;
+    height: 15vh;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.containerTree h2 {
+    color: #ffffff;
+    font-family: 'Dingos Stamp', sans-serif;
+    font-size: 40px;
+    font-weight: 900;
+    margin: 1rem 0;
+}
+
+.pathLines, .pathLinesTwo {
+    width: 90%;
+    height: 40%;
+}
+
+.pathLines path, .pathLinesTwo path {
+    stroke: white;
+    stroke-width: 20;
+    stroke-dasharray: 14;
+    fill: none;
+}
+
+/* Sección de información */
+.containerFour {
+    width: 100%;
+    height: 5vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 2rem 0;
+}
+
+.containerStatementOne,
+.containerStatementTwo,
+.containerStatementTree {
+    width: 30%;
+    text-align: center;
+}
+
+.containerFour h2 {
+    color: #ffffff;
+    font-family: 'Dingos Stamp', sans-serif;
+    font-size: 20px;
+}
+
+/* Sección de imágenes */
+.containerFive {
+    width: 100%;
+    height: 30vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 2rem 0;
+}
+
+.containerimgUne,
+.containerimgTwo,
+.containerimgTree {
+    width: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.FotoT1,
+.MenuT1,
+.GoogleMaps {
+    width: 170px;
+    height: auto;
+    border-radius: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.FotoT1:hover,
+.MenuT1:hover,
+.GoogleMaps:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+}
+
+/* Sección de información adicional */
+.containerSeven {
+    width: 100%;
+    height: 23.5vh;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2rem;
+}
+
+.containerTex,
+.containerData {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.containerTex h2,
+.containerData h2 {
+    color: #ffffff;
+    font-family: 'Dingos Stamp', sans-serif;
+    margin: 0.5rem 0;
+    text-align: center;
+}
+
+/* Redes sociales */
+.containerSocialNetworks {
+    width: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.containerSocialNetworks img {
+    width: 60px;
+    height: auto;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.containerSocialNetworks img:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+}
+
+.containerSocialNetworks a {
+    color: inherit;
+    text-decoration: none;
+}
+
+/* Estilos responsivos */
+@media (max-width: 1200px) {
+    .logoKomuna {
+        width: 400px;
+    }
+
+    .buttonBack {
+        width: 80px;
+    }
+
+    .containerTree h2 {
+        font-size: 32px;
+    }
+
+    .FotoT1,
+    .MenuT1,
+    .GoogleMaps {
+        width: 150px;
+    }
+
+    .containerSocialNetworks img {
+        width: 50px;
+    }
+}
+
+@media (max-width: 768px) {
+    .containerOne,
+    .containerTwo {
+        width: 90vw;
+    }
+
+    .ContainerChart {
+        width: 90vw;
+        height: auto;
+        min-height: 80vh;
+    }
+
+    .logoKomuna {
+        width: 300px;
+    }
+
+    .buttonBack {
+        width: 60px;
+    }
+
+    .containerTree h2 {
+        font-size: 28px;
+    }
+
+    .containerFour {
+        flex-direction: column;
+        height: auto;
+        gap: 1rem;
+    }
+
+    .containerStatementOne,
+    .containerStatementTwo,
+    .containerStatementTree {
+        width: 100%;
+    }
+
+    .containerFive {
+        flex-direction: column;
+        height: auto;
+        gap: 2rem;
+    }
+
+    .containerimgUne,
+    .containerimgTwo,
+    .containerimgTree {
+        width: 100%;
+    }
+
+    .containerSeven {
+        flex-direction: column;
+        height: auto;
+        gap: 2rem;
+    }
+
+    .containerTex,
+    .containerData,
+    .containerSocialNetworks {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .logoKomuna {
+        width: 200px;
+    }
+
+    .buttonBack {
+        width: 40px;
+    }
+
+    .containerTree h2 {
+        font-size: 24px;
+    }
+
+    .FotoT1,
+    .MenuT1,
+    .GoogleMaps {
+        width: 130px;
+    }
+
+    .containerSocialNetworks img {
+        width: 40px;
+    }
+} 

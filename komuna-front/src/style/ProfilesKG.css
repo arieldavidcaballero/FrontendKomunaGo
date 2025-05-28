@@ -1,0 +1,224 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.containerProfiles { /* Contenedor General */
+    width: 100vw;
+    height: 100vh;
+    background-color: rgb(0, 0, 0);
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.containerOne { /* Contenedor Uno */
+    width: 80vw;
+    height: 15vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logoKomuna {
+    width: 500px;
+    height: auto;
+}
+
+.buttonBack {
+    width: 100px;
+    height: auto;
+}
+
+.containerTwo { /* Contenedor Dos */
+    width: 80vw;
+    height: 85vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ContainerChart { /* Contenerdo Cuadro */
+    width: 80vw;
+    height: 80vh;
+    background-color: rgb(0, 0, 0);
+    border: 6px dashed white;
+    border-radius: 3%;
+    animation: glowBorder 2s infinite ease-in-out;
+}
+
+.containerTree { /* Container Tres */
+    width: 79.3vw;
+    height: 15vh;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.containerTree h2 {
+    color: #ffffff; 
+    font-family: 'Dingos Stamp', sans-serif;
+    font-size: 40px;
+    font-weight: 900;
+}
+
+.pathLines {
+    width: 90%;
+    height: 40%;
+}
+
+.pathLines path {
+    stroke: white; /* o el color que prefieras */
+    stroke-width: 20;
+    stroke-dasharray: 14; /* estilo entrecortado */
+    fill: none;
+}
+
+.containerFour { /* Container Cuatro */
+    width: 79.3vw;
+    height: 5vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.containerFour h2 {
+    color: #ffffff; 
+    font-family: 'Dingos Stamp', sans-serif;
+    font-size: 20px;
+    margin: 120px;
+}
+
+.containerStatementOne { /* contenedero enunciado uno */
+    width: 26.6vw;
+    height: 5vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.containerStatementTwo {  /* contenedero enunciado Dos */
+    width: 26.6vw;
+    height: 5vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.containerStatementTree {  /* contenedero enunciado Tres */
+    width: 26.6vw;
+    height: 5vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.containerFive { /* Container Cinco */
+    width: 79.3vw;
+    height: 30vh;
+    display: flex;
+    align-items: center;
+}
+
+.containerFive img {
+    width: 170px;
+    height: auto;
+    border-radius: 10px;
+}
+
+.containerimgUne { /* contenedero Imagen Uno*/
+    width: 26.6vw;
+    height: 30vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.containerimgTwo { /* contenedero Imagen Dos*/
+    width: 26.6vw;
+    height: 30vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.containerimgTree { /* contenedero Imagen Tres*/
+    width: 26.6vw;
+    height: 30vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.containerSix { /* Container Seis */
+    width: 79.3vw;
+    height: 5vh;
+    display: flex;
+    justify-content: center;
+}
+
+.pathLinesTwo {
+    width: 90%;
+    height: 100%;
+}
+
+.pathLinesTwo path {
+    stroke: white; /* o el color que prefieras */
+    stroke-width: 20;
+    stroke-dasharray: 14; /* estilo entrecortado */
+    fill: none;
+}
+
+.containerSeven { /* Container Siete */
+    width: 79.3vw;
+    height: 23.5vh;
+    display: flex;
+    flex-direction: row;
+}
+
+.containerTex {
+    width: 79.3vw;
+    height: 23.5vh;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.containerData {
+    width: 79.3vw;
+    height: 23.5vh;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.containerSocialNetworks {
+    width: 79.3vw;
+    height: 23.5vh;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+}
+
+.containerSeven h2 {
+    color: #ffffff;
+    font-family: 'Dingos Stamp', sans-serif;
+    margin-left: 60px;
+}
+
+.containerSocialNetworks img {
+    width: 60px;
+    height: auto;
+    margin-right: 35px;
+}
+
+img { /* Efecto para imágenes y botones */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+img:hover { /* Efecto al pasar el cursor */
+    transform: scale(1.1); /* Aumenta el tamaño */
+}
+img:active { /* Efecto de clic */
+    transform: scale(0.95); /* Efecto de presión */
+}

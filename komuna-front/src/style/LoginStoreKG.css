@@ -1,0 +1,131 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.containerLoginStore { /* Contenedor General */
+    width: 100vw;
+    height: 100vh;
+    background-color: rgb(0, 0, 0);
+    background-image: url("/image/Fondo\ Inicios2.png");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@keyframes glowBorder {
+    0% {
+        box-shadow: 0 0 5px white;
+    }
+    50% {
+        box-shadow: 0 0 20px white, 0 0 30px white;
+    }
+    100% {
+        box-shadow: 0 0 5px white;
+    }
+}
+
+.ContainerChart {
+    width: 40vw;
+    height: 90vh;
+    background-color: rgb(0, 0, 0);
+    border: 10px dashed white;
+    border-radius: 5%;
+    animation: glowBorder 2s infinite ease-in-out;
+}
+
+.containerOne { /* Contenedor Uno */
+    width: 40vw;
+    height: 10vh;   
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.buttonBack {
+    width: 50px;
+    height: auto;
+    margin-left: 10px;
+}
+
+.containerTwo { /* Contenerdo Dos */
+    width: 38.8vw;
+    height: 25vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.containerTwo img {
+    width: 200px;
+    height: auto;
+}
+
+.containerTree { /* Contenerdo Tres */
+    width: 38.8vw;
+    height:25vh;
+    display: flex;
+    justify-content: center;
+    padding-top: 100px;
+}
+
+.inputEnter {
+    background-color: black;
+    color: white;
+    border: 4px solid white; /* cambia dashed por solid */
+    border-radius: 25px;
+    padding: 10px 10px;
+    font-size: 25px;
+    outline: none;
+}
+
+.inputEnter::placeholder {
+    color: gray;
+    opacity: 0.7;
+}
+
+.inputEnter:focus { /* Efecto cuando está en foco */
+    border-color: white;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.containerTree img {
+    width: 65px;
+    height: auto;
+    padding-left: 10px;
+}
+
+.containerFour { /* Contenerdo Cuatro */
+    width: 38.8vw;
+    height:5vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+
+.containerFour h3 {
+    color: #ffffff; 
+    font-family: 'Dingos Stamp', sans-serif;
+    font-size: 19px;
+    font-weight: 100;
+    text-decoration: underline;
+    padding-right: 50px;
+}
+
+.containerFive { /* Contenedor Cinco */
+    width: 38.8vw;
+    height: 22.5vh;
+    display: flex;
+    justify-content: center;
+    align-items: end;
+}
+
+.containerFive img {
+    width: 340px;
+    height: auto;
+    margin-bottom: 20px;
+}

@@ -1,0 +1,138 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.containerLoginTourist { /* Contenedor General */
+    width: 100%;
+    height: auto;
+    background-color: rgb(0, 0, 0);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.containerOne { /* Container Uno*/
+    width: 100vw;
+    height: 18vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+
+.containerOne img {
+    width: 500px;
+    height: auto;
+}
+
+.containerOne .buttonBack {
+    width: 130px;
+    height: auto;
+    margin-left: 800px;
+}
+
+.containerTwo { /* Container Dos*/
+    width: 100vw;
+    height: 5vh;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+}
+
+.pathLines {
+    width: 100%;
+    height: 100%;
+}
+
+.pathLines path {
+    stroke: white; /* o el color que prefieras */
+    stroke-width: 20;
+    stroke-dasharray: 10,15; /* estilo entrecortado */
+    fill: none;
+}
+
+.containerTree { /* Container Tres*/
+    width: 100vw;
+    height: 50vh;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    padding-top: 30px;
+}
+
+.buttonStore {
+    width: 200px;
+    height: auto;
+    margin-left: 40px;
+}
+
+.buttonStore { /* Efecto para imágenes y botones */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.buttonStore:hover { /* Efecto al pasar el cursor */
+    transform: scale(1.1); /* Aumenta el tamaño */
+}
+.buttonStore:active { /* Efecto de clic */
+    transform: scale(0.95); /* Efecto de presión */
+}
+
+.containerFour { /* Container Cuatro*/
+    width: 100vw;
+    height: 27vh;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+}
+
+.btnFilter {
+    width: 190px; /* <-- Nuevo largo */
+    height: 80px; /* <-- Nuevo alto */
+    border: none;
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 15px 15px 0 0;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 120px;
+    color: black;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Colores personalizados */
+.restaurante { background-color: #7CFF00; }
+.mirador { background-color: #00F8FF; }
+.cocteleria { background-color: #FF00EF; }
+.manualidades { background-color: #A600F5; }
+.todo { background-color: #0038FF;}
+
+/* Fondo decorativo para el botón activo */
+.btnFilter.active::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-image: url('/Image/mandala.png'); 
+    background-size: cover;
+    opacity: 0.3;
+    border-radius: 15px;
+    z-index: 0;
+}
+
+.btnFilter.active {
+    transform: scaleX(1.40);
+    color: white;
+    z-index: 1;
+}
+
+/* Asegura que el texto esté encima del decorado */
+.btnFilter span {
+    position: relative;
+    z-index: 2;
+}
