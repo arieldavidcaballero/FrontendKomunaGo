@@ -4,7 +4,7 @@
     box-sizing: border-box;
 }
 
-.containerProfiles {
+.profiles-kg-container {
     width: 100vw;
     height: 100vh;
     background-color: rgb(0, 0, 0);
@@ -13,8 +13,7 @@
     flex-direction: column;
 }
 
-/* Header con logo y botón de retroceso */
-.containerOne {
+.profiles-kg-header {
     width: 80vw;
     height: 15vh;
     display: flex;
@@ -22,31 +21,30 @@
     align-items: center;
 }
 
-.logoKomuna {
+.profiles-kg-logo {
     width: 500px;
     height: auto;
     transition: transform 0.3s ease;
 }
 
-.back-button {
+.profiles-kg-back-button {
     background: none;
     border: none;
     cursor: pointer;
     transition: transform 0.3s ease;
 }
 
-.back-button:hover {
+.profiles-kg-back-button:hover {
     transform: scale(1.1);
 }
 
-.buttonBack {
+.profiles-kg-back-icon {
     width: 100px;
     height: auto;
     transition: transform 0.3s ease;
 }
 
-/* Contenedor principal */
-.containerTwo {
+.profiles-kg-main {
     width: 80vw;
     height: 85vh;
     display: flex;
@@ -54,7 +52,7 @@
     justify-content: center;
 }
 
-.ContainerChart {
+.profiles-kg-chart {
     width: 80vw;
     height: 80vh;
     background-color: rgb(0, 0, 0);
@@ -71,7 +69,7 @@
 }
 
 /* Sección de vistas */
-.containerTree {
+.profiles-kg-views {
     width: 100%;
     height: 15vh;
     display: flex;
@@ -79,7 +77,7 @@
     flex-direction: column;
 }
 
-.containerTree h2 {
+.profiles-kg-views h2 {
     color: #ffffff;
     font-family: 'Dingos Stamp', sans-serif;
     font-size: 40px;
@@ -87,12 +85,14 @@
     margin: 1rem 0;
 }
 
-.pathLines, .pathLinesTwo {
+.profiles-kg-path,
+.profiles-kg-path-two {
     width: 90%;
     height: 40%;
 }
 
-.pathLines path, .pathLinesTwo path {
+.profiles-kg-path path,
+.profiles-kg-path-two path {
     stroke: white;
     stroke-width: 20;
     stroke-dasharray: 14;
@@ -100,7 +100,7 @@
 }
 
 /* Sección de información */
-.containerFour {
+.profiles-kg-info {
     width: 100%;
     height: 5vh;
     display: flex;
@@ -109,21 +109,21 @@
     margin: 2rem 0;
 }
 
-.containerStatementOne,
-.containerStatementTwo,
-.containerStatementTree {
+.profiles-kg-info-title,
+.profiles-kg-info-menu,
+.profiles-kg-info-location {
     width: 30%;
     text-align: center;
 }
 
-.containerFour h2 {
+.profiles-kg-info h2 {
     color: #ffffff;
     font-family: 'Dingos Stamp', sans-serif;
     font-size: 20px;
 }
 
 /* Sección de imágenes */
-.containerFive {
+.profiles-kg-images {
     width: 100%;
     height: 30vh;
     display: flex;
@@ -132,33 +132,31 @@
     margin: 2rem 0;
 }
 
-.containerimgUne,
-.containerimgTwo,
-.containerimgTree {
+.profiles-kg-image-container {
     width: 30%;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.FotoT1,
-.MenuT1,
-.GoogleMaps {
+.profiles-kg-photo,
+.profiles-kg-menu,
+.profiles-kg-maps {
     width: 170px;
     height: auto;
     border-radius: 10px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.FotoT1:hover,
-.MenuT1:hover,
-.GoogleMaps:hover {
+.profiles-kg-photo:hover,
+.profiles-kg-menu:hover,
+.profiles-kg-maps:hover {
     transform: scale(1.1);
     box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
 }
 
 /* Sección de información adicional */
-.containerSeven {
+.profiles-kg-details {
     width: 100%;
     height: 23.5vh;
     display: flex;
@@ -166,16 +164,16 @@
     margin-top: 2rem;
 }
 
-.containerTex,
-.containerData {
+.profiles-kg-labels,
+.profiles-kg-values {
     width: 30%;
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
 
-.containerTex h2,
-.containerData h2 {
+.profiles-kg-labels h2,
+.profiles-kg-values h2 {
     color: #ffffff;
     font-family: 'Dingos Stamp', sans-serif;
     margin: 0.5rem 0;
@@ -183,7 +181,7 @@
 }
 
 /* Redes sociales */
-.containerSocialNetworks {
+.profiles-kg-social {
     width: 30%;
     display: flex;
     justify-content: center;
@@ -191,128 +189,102 @@
     gap: 1rem;
 }
 
-.containerSocialNetworks img {
+.profiles-kg-social img {
     width: 60px;
     height: auto;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.containerSocialNetworks img:hover {
+.profiles-kg-social img:hover {
     transform: scale(1.1);
     box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
 }
 
-.containerSocialNetworks a {
+.profiles-kg-social a {
     color: inherit;
     text-decoration: none;
 }
 
 /* Estilos responsivos */
 @media (max-width: 1200px) {
-    .logoKomuna {
+    .profiles-kg-logo {
         width: 400px;
     }
 
-    .buttonBack {
+    .profiles-kg-back-icon {
         width: 80px;
     }
 
-    .containerTree h2 {
+    .profiles-kg-views h2 {
         font-size: 32px;
     }
 
-    .FotoT1,
-    .MenuT1,
-    .GoogleMaps {
+    .profiles-kg-photo,
+    .profiles-kg-menu,
+    .profiles-kg-maps {
         width: 150px;
     }
 
-    .containerSocialNetworks img {
+    .profiles-kg-social img {
         width: 50px;
     }
 }
 
 @media (max-width: 768px) {
-    .containerOne,
-    .containerTwo {
+    .profiles-kg-header,
+    .profiles-kg-main {
         width: 90vw;
     }
 
-    .ContainerChart {
+    .profiles-kg-chart {
         width: 90vw;
         height: auto;
         min-height: 80vh;
     }
 
-    .logoKomuna {
+    .profiles-kg-logo {
         width: 300px;
     }
 
-    .buttonBack {
+    .profiles-kg-back-icon {
         width: 60px;
     }
 
-    .containerTree h2 {
+    .profiles-kg-views h2 {
         font-size: 28px;
     }
 
-    .containerFour {
-        flex-direction: column;
-        height: auto;
-        gap: 1rem;
+    .profiles-kg-photo,
+    .profiles-kg-menu,
+    .profiles-kg-maps {
+        width: 120px;
     }
 
-    .containerStatementOne,
-    .containerStatementTwo,
-    .containerStatementTree {
-        width: 100%;
-    }
-
-    .containerFive {
-        flex-direction: column;
-        height: auto;
-        gap: 2rem;
-    }
-
-    .containerimgUne,
-    .containerimgTwo,
-    .containerimgTree {
-        width: 100%;
-    }
-
-    .containerSeven {
-        flex-direction: column;
-        height: auto;
-        gap: 2rem;
-    }
-
-    .containerTex,
-    .containerData,
-    .containerSocialNetworks {
-        width: 100%;
+    .profiles-kg-social img {
+        width: 40px;
     }
 }
 
 @media (max-width: 480px) {
-    .logoKomuna {
+    .profiles-kg-logo {
         width: 200px;
     }
 
-    .buttonBack {
+    .profiles-kg-back-icon {
         width: 40px;
     }
 
-    .containerTree h2 {
+    .profiles-kg-views h2 {
         font-size: 24px;
     }
 
-    .FotoT1,
-    .MenuT1,
-    .GoogleMaps {
-        width: 130px;
+    .profiles-kg-photo,
+    .profiles-kg-menu,
+    .profiles-kg-maps {
+        width: 100px;
     }
 
-    .containerSocialNetworks img {
-        width: 40px;
+    .profiles-kg-social img {
+        width: 30px;
     }
 } 

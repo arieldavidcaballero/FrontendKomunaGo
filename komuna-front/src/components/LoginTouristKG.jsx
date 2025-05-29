@@ -9,6 +9,7 @@ import B3Image from '../image/B3.jpg';
 import B4Image from '../image/B4.jpg';
 import B5Image from '../image/B5.jpg';
 import B6Image from '../image/B6.jpg';
+import '../styles/LoginTouristKG.css'; 
 
 export default function LoginTouristKG() {
     const navigate = useNavigate();
@@ -23,19 +24,19 @@ export default function LoginTouristKG() {
     };
 
     return (
-        <div className='containerLoginTourist'>
-            <div className="containerOne">
+        <div className='login-tourist-kg-container'>
+            <div className="login-tourist-kg-header">
                 <img src={LogoKomunaGO} alt="Logo KomunaGO" />
                 <button 
-                    className="back-button-container" 
+                    className="login-tourist-kg-back-button" 
                     onClick={() => handleNavigate('/start')}
                 >
-                    <img className="buttonBack" src={BackButton} alt="Volver" />
+                    <img className="login-tourist-kg-back-icon" src={BackButton} alt="Volver" />
                 </button>
             </div>
 
-            <div className="containerTwo"> 
-                <svg className="pathLines" viewBox="0 0 1200 120" preserveAspectRatio="none">
+            <div className="login-tourist-kg-divider"> 
+                <svg className="login-tourist-kg-path" viewBox="0 0 1200 120" preserveAspectRatio="none">
                     <path 
                         d="M0,60 L1200,60" 
                         stroke="#FF0000" 
@@ -46,19 +47,19 @@ export default function LoginTouristKG() {
                 </svg>
             </div>
 
-            <div className="containerTree">
+            <div className="login-tourist-kg-stores">
                 {[B1Image, B2Image, B3Image, B4Image, B5Image, B6Image].map((image, index) => (
                     <button 
                         key={index}
-                        className="store-button-container"
+                        className="login-tourist-kg-store-button"
                         onClick={() => handleNavigate('/profiles')}
                     >
-                        <img className="buttonStore" src={image} alt={`Tienda ${index + 1}`} />
+                        <img className="login-tourist-kg-store-image" src={image} alt={`Tienda ${index + 1}`} />
                     </button>
                 ))}
             </div>
 
-            <div className="containerFour">
+            <div className="login-tourist-kg-filters">
                 {[
                     { id: 'restaurante', label: 'RESTAURANTE' },
                     { id: 'mirador', label: 'MIRADOR' },
@@ -68,7 +69,7 @@ export default function LoginTouristKG() {
                 ].map(({ id, label }) => (
                     <button 
                         key={id}
-                        className={`btnFilter ${id} ${activeFilter === id ? 'active' : ''}`}
+                        className={`login-tourist-kg-filter-button ${id} ${activeFilter === id ? 'active' : ''}`}
                         onClick={() => handleFilterClick(id)}
                     >
                         <span>{label}</span>

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import LogoKomunaGO from '../image/Logo_KomunaGO.png';
-import LogoTienda from '../image/Logo Tienda.jpg';
+import LogoTienda from '../image/Logo-Tienda.jpg';
 import AtrasIcon from '../image/Atras.png';
 import '../styles/LoginStoreKG.css';
 
@@ -37,38 +37,38 @@ export default function LoginStoreKG() {
     };
 
     return (
-        <div className="containerRegisterLocal">
-            <div className="ContainerChart">
-                <div className="containerOne">
+        <div className="login-store-kg-container">
+            <div className="login-store-kg-chart">
+                <div className="login-store-kg-back-container">
                     <button 
-                        className="back-button"
+                        className="login-store-kg-back-button"
                         onClick={() => navigate(-1)}
                     >
                         <img 
-                            className="buttonBack" 
+                            className="login-store-kg-back-icon" 
                             src={AtrasIcon} 
                             alt="Volver atrás" 
                         />
                     </button>
                 </div>
 
-                <div className="containerTwo">
+                <div className="login-store-kg-logo-container">
                     <img 
-                        className="LogoKomunaGO" 
+                        className="login-store-kg-logo" 
                         src={LogoKomunaGO} 
                         alt="Logo KomunaGO" 
                     />
                     <img 
-                        className="LogoTienda" 
+                        className="login-store-kg-store-logo" 
                         src={LogoTienda} 
                         alt="Logo Tienda" 
                     />
                 </div>
 
-                <form onSubmit={handleSubmit} className="containerTree">
-                    <div className="containerTreeZore">
+                <form onSubmit={handleSubmit} className="login-store-kg-form">
+                    <div className="login-store-kg-input-group">
                         <input 
-                            className="inputEnter"
+                            className="login-store-kg-input"
                             type="text"
                             required
                             name="nombreLocal"
@@ -77,9 +77,9 @@ export default function LoginStoreKG() {
                             onChange={handleInputChange}
                         />
                     </div>
-                    <div className="containerTreeOne">
+                    <div className="login-store-kg-input-group">
                         <input 
-                            className="inputEnter"
+                            className="login-store-kg-input"
                             type="email"
                             required
                             name="correoElectronico"
@@ -88,9 +88,9 @@ export default function LoginStoreKG() {
                             onChange={handleInputChange}
                         />
                     </div>
-                    <div className="containerTreeTwo">
+                    <div className="login-store-kg-input-group">
                         <select
-                            className="inputEnter"
+                            className="login-store-kg-input"
                             required
                             name="categoriaLocal"
                             value={formData.categoriaLocal}
@@ -105,18 +105,18 @@ export default function LoginStoreKG() {
                     </div>
                 </form>
 
-                <div className="containerFour">
+                <div className="login-store-kg-register-container">
                     <button 
-                        className="RegisterLocal"
+                        className="login-store-kg-register-button"
                         onClick={handleSubmit}
                     >
                         REGISTRAR LOCAL
                     </button>
                 </div>
 
-                <div className="containerFive">
+                <div className="login-store-kg-help-container">
                     <button 
-                        className="help-button"
+                        className="login-store-kg-help-button"
                         onClick={handleHelp}
                     >
                         <h3>Ayuda</h3>

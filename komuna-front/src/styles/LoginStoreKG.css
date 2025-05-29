@@ -1,30 +1,52 @@
-.containerRegisterLocal {
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.login-store-kg-container {
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-    padding: 20px;
+    background-image: url("../image/Fondo_Inicios2.png") !important;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;    
 }
 
-.ContainerChart {
-    background: white;
+
+
+@keyframes glowBorder {
+    0% {
+        box-shadow: 0 0 5px white;
+    }
+    50% {
+        box-shadow: 0 0 20px white, 0 0 30px white;
+    }
+    100% {
+        box-shadow: 0 0 5px white;
+    }
+}
+
+.login-store-kg-chart {
+    margin: 20px;
+    background: rgb(0, 0, 0);
     border-radius: 20px;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
     width: 100%;
     max-width: 500px;
     padding: 2rem;
     position: relative;
+    animation: glowBorder 2s infinite ease-in-out;
 }
 
-/* Contenedor del botón de retroceso */
-.containerOne {
+.login-store-kg-back-container {
     position: absolute;
-    top: 20px;
+    top: 10px;
     left: 20px;
 }
 
-.back-button {
+.login-store-kg-back-button {
     background: none;
     border: none;
     cursor: pointer;
@@ -32,52 +54,51 @@
     transition: transform 0.2s;
 }
 
-.back-button:hover {
+.login-store-kg-back-button:hover {
     transform: scale(1.1);
 }
 
-.buttonBack {
+.login-store-kg-back-icon {
     width: 30px;
     height: 30px;
     object-fit: contain;
 }
 
 /* Contenedor de logos */
-.containerTwo {
-    display: flex;
-    flex-direction: column;
+.login-store-kg-logo-container {
+    justify-content: center;
     align-items: center;
+    display: flex;
+    flex-direction: row;
     gap: 1.5rem;
     margin-bottom: 2rem;
     margin-top: 2rem;
 }
 
-.LogoKomunaGO {
+.login-store-kg-logo {
     width: 200px;
     height: auto;
 }
 
-.LogoTienda {
-    width: 120px;
+.login-store-kg-store-logo {
+    width: 80px;
     height: auto;
     border-radius: 10px;
 }
 
 /* Formulario */
-.containerTree {
+.login-store-kg-form {
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
     margin-bottom: 2rem;
 }
 
-.containerTreeZore,
-.containerTreeOne,
-.containerTreeTwo {
+.login-store-kg-input-group {
     width: 100%;
 }
 
-.inputEnter {
+.login-store-kg-input {
     width: 100%;
     padding: 12px 15px;
     border: 2px solid #e1e1e1;
@@ -86,18 +107,18 @@
     transition: border-color 0.3s ease;
 }
 
-.inputEnter:focus {
+.login-store-kg-input:focus {
     border-color: #4a90e2;
     outline: none;
     box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
 }
 
-.inputEnter::placeholder {
+.login-store-kg-input::placeholder {
     color: #999;
 }
 
 /* Select personalizado */
-select.inputEnter {
+select.login-store-kg-input {
     appearance: none;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23999' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10l-5 5z'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
@@ -106,11 +127,12 @@ select.inputEnter {
 }
 
 /* Botón de registro */
-.containerFour {
+.login-store-kg-register-container {
     margin-bottom: 1.5rem;
+    margin-left: 2vw !important;
 }
 
-.RegisterLocal {
+.login-store-kg-register-button {
     width: 100%;
     padding: 15px;
     background: #4a90e2;
@@ -124,20 +146,20 @@ select.inputEnter {
     transition: background-color 0.3s ease;
 }
 
-.RegisterLocal:hover {
+.login-store-kg-register-button:hover {
     background: #357abd;
 }
 
-.RegisterLocal:active {
+.login-store-kg-register-button:active {
     transform: translateY(1px);
 }
 
 /* Botón de ayuda */
-.containerFive {
+.login-store-kg-help-container {
     text-align: center;
 }
 
-.help-button {
+.login-store-kg-help-button {
     background: none;
     border: none;
     color: #4a90e2;
@@ -145,50 +167,50 @@ select.inputEnter {
     padding: 10px;
 }
 
-.help-button h3 {
+.login-store-kg-help-button h3 {
     margin: 0;
     font-size: 1rem;
     text-decoration: underline;
 }
 
-.help-button:hover h3 {
+.login-store-kg-help-button:hover h3 {
     color: #357abd;
 }
 
 /* Estilos responsivos */
 @media (max-width: 768px) {
-    .ContainerChart {
+    .login-store-kg-chart {
         padding: 1.5rem;
     }
 
-    .LogoKomunaGO {
+    .login-store-kg-logo {
         width: 150px;
     }
 
-    .LogoTienda {
+    .login-store-kg-store-logo {
         width: 100px;
     }
 }
 
 @media (max-width: 480px) {
-    .ContainerChart {
+    .login-store-kg-chart {
         padding: 1rem;
     }
 
-    .containerOne {
+    .login-store-kg-back-container {
         top: 10px;
         left: 10px;
     }
 
-    .LogoKomunaGO {
+    .login-store-kg-logo {
         width: 120px;
     }
 
-    .LogoTienda {
+    .login-store-kg-store-logo {
         width: 80px;
     }
 
-    .inputEnter {
+    .login-store-kg-input {
         padding: 10px 12px;
     }
 } 

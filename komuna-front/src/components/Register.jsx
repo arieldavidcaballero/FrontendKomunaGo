@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import '../style/RegisterLocalKG.css';
+import '../styles/RegisterLocalKG.css';
+import LogoKomunaGO from '../image/Logo_KomunaGO.png';
+import LogoTienda from '../image/Logo-Tienda.jpg';
+import Atras from '../image/Atras.png';
 
 const Register = () => {
     const [formData, setFormData] = useState({
@@ -31,29 +34,29 @@ const Register = () => {
     };
 
     return (
-        <div className="containerRegisterLocal">
-            <div className="ContainerChart">
+        <div className="register-kg-container">
+            <div className="register-kg-chart">
                 {/* Contenedor Uno */}
-                <div className="containerOne">
+                <div className="register-kg-back-container">
                     <Link to="/login-store">
-                        <img className="buttonBack" src="/image/Atras.png" alt="button Back" />
+                        <img className="register-kg-back-icon" src={Atras} alt="button Back" />
                     </Link>
                 </div>
 
                 {/* Contenedor Dos */}
-                <div className="containerTwo">
-                    <img className="LogoKomunaGO" src="/image/Logo KomunaGO.png" alt="Logo KomunaGO" />
-                    <img className="LogoTienda" src="/image/Logo Tienda.jpg" alt="Logo Tienda" />
+                <div className="register-kg-logo-container">
+                    <img className="register-kg-logo" src={LogoKomunaGO} alt="Logo KomunaGO" />
+                    <img className="register-kg-store-logo" src={LogoTienda} alt="Logo Tienda" />
                 </div>
 
                 {/* Horizontal Dashed Line */}
-                <div className="dashed-line"></div>
+                <div className="register-kg-divider"></div>
 
                 {/* Contenedor Tres */}
-                <form onSubmit={handleSubmit} className="containerTree">
-                    <div className="containerTreeZore">
+                <form onSubmit={handleSubmit} className="register-kg-form">
+                    <div className="register-kg-input-group">
                         <input
-                            className="inputEnter"
+                            className="register-kg-input"
                             type="text"
                             required
                             name="nombreLocal"
@@ -62,9 +65,9 @@ const Register = () => {
                             onChange={handleInputChange}
                         />
                     </div>
-                    <div className="containerTreeOne">
+                    <div className="register-kg-input-group">
                         <input
-                            className="inputEnter"
+                            className="register-kg-input"
                             type="email"
                             required
                             name="correoElectronico"
@@ -73,9 +76,9 @@ const Register = () => {
                             onChange={handleInputChange}
                         />
                     </div>
-                    <div className="containerTreeTwo">
+                    <div className="register-kg-input-group">
                         <input
-                            className="inputEnter"
+                            className="register-kg-input"
                             type="text"
                             required
                             name="categoriaLocal"
@@ -86,25 +89,27 @@ const Register = () => {
                     </div>
 
                     {/* Contenedor Cuatro */}
-                    <div className="containerFour">
-                        <button type="submit" className="RegisterLocal">
+                    <div className="register-kg-submit-container">
+                        <button type="submit" className="register-kg-submit-button">
                             REGISTRAR LOCAL
                         </button>
                     </div>
                 </form>
 
-                {/* Registrar Tienda Link */}
-                <div className="register-store-link">
-                    <Link to="/register-store">
-                        Registrar Tienda
-                    </Link>
-                </div>
+                <div className="register-kg-footer">
+                    {/* Registrar Tienda Link */}
+                    <div className="register-kg-store-link">
+                        <Link to="/register-store">
+                            Registrar Tienda
+                        </Link>
+                    </div>
 
-                {/* Contenedor Cinco */}
-                <div className="containerFive">
-                    <button onClick={helpMessage} className="help-button">
-                        <h3>Ayuda</h3>
-                    </button>
+                    {/* Contenedor Cinco */}
+                    <div className="register-kg-help-container">
+                        <button onClick={helpMessage} className="register-kg-help-button">
+                            <h3>Ayuda</h3>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>

@@ -1,0 +1,148 @@
+* { /* Reset General */
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body { /* Contenedor General */
+    background-color: #000;
+    color: white;
+    font-family: Arial, sans-serif;
+}
+
+.edit-store-kg-container { /* Contenedor General */
+    width: 100%;
+    height: 100vh;
+    background-image: url("../image/Fondo_Inicios2.png");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.edit-store-kg-box-left,
+.edit-store-kg-box-right { /* Columnas Izquierda y Derecha */
+    width: 50%;
+    padding: 2rem;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.edit-store-kg-logo { /* Contenedor Logo */
+    width: 500px;
+}
+
+.edit-store-kg-title {
+    font-size: 1.2rem;
+    margin: 0 0 0.5rem 0;
+    color: white;
+}
+
+.edit-store-kg-input {
+    width: 100%;
+    padding: 10px 0;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid white;
+    color: white;
+    font-size: 1rem;
+    outline: none;
+    border-radius: 0;
+}
+
+.edit-store-kg-input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.edit-store-kg-social-input {
+    width: 100%;
+    padding: 10px 15px;
+    border-radius: 30px;
+    background-color: black;
+    color: white;
+    border: 1px solid white;
+    font-size: 1rem;
+}
+
+.edit-store-kg-map-link {
+    color: white;
+    text-decoration: underline;
+}
+
+.edit-store-kg-back-button {
+    width: 130px;
+    cursor: pointer;
+}
+
+.edit-store-kg-photo { /* Imagen del Local */
+    width: 100%;
+    max-width: 250px;
+    border-radius: 20px;
+}
+
+.edit-store-kg-menu { /* Imagen del Menú */
+    width: 100%;
+    max-width: 200px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.edit-store-kg-social-container { /* Redes Sociales */
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.edit-store-kg-social-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.edit-store-kg-social-item img {
+    width: 30px;
+    height: 30px;
+}
+
+.edit-store-kg-social-item input {
+    flex-grow: 1;
+}
+
+.edit-store-kg-photo-menu { /* Contenedor Foto y Menú Lado a Lado */
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 4rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+.edit-store-kg-photo-container,
+.edit-store-kg-menu-container { /* Estilo de Foto y Menú Individual */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    text-align: center;
+}
+
+@media (max-width: 768px) { /* Responsive */
+    .edit-store-kg-container {
+        flex-direction: column;
+    }
+
+    .edit-store-kg-box-left,
+    .edit-store-kg-box-right {
+        width: 100%;
+    }
+
+    .edit-store-kg-photo,
+    .edit-store-kg-menu {
+        max-width: 100%;
+    }
+}

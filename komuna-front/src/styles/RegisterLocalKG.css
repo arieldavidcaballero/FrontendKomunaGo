@@ -1,0 +1,175 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.register-kg-container { 
+    width: 100vw;
+    height: 100vh;
+    background-image: url("../image/Fondo_Inicios2.png") ;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+@keyframes glowBorder {
+    0% {
+        box-shadow: 0 0 5px white;
+    }
+    50% {
+        box-shadow: 0 0 20px white, 0 0 30px white;
+    }
+    100% {
+        box-shadow: 0 0 5px white;
+    }
+}
+
+.register-kg-chart {
+    width: 40vw ;
+    height: 95vh ;
+    background-color: rgb(0, 0, 0) ;
+    border: 10px dashed white ;
+    border-radius: 5% ;
+    animation: glowBorder 2s infinite ease-in-out ;
+}
+
+.register-kg-back-container { /* Contenedor Uno */
+    width: 2vw ;
+    height: 4vh ;
+    display: flex ;
+    flex-direction: row ;
+    display: flex ;
+    align-items: center ;
+}
+
+.register-kg-back-icon {
+    width: 30px ;
+    height: auto ;
+    margin-left: 1px ;
+}
+
+.register-kg-logo-container { /* Contenerdo Dos */
+    width: 33vw ;
+    height: 12vh ;
+    display: flex ;
+    justify-content: start ;
+    align-items: center ;
+}
+
+.register-kg-logo {
+    width: 300px ;
+    height: auto ;
+}
+
+.register-kg-store-logo {
+    width: 70px ;
+    height: auto ;
+}
+
+.register-kg-form { /* Contenerdo Tres */
+    width: 33vw ;
+    height: 45vh ;
+    display: flex ;
+    align-items: center ;
+    flex-direction: column ;
+    padding-top: 40px ;
+}
+
+.register-kg-input-group { /* Contenedor Tres Cero */
+    width: 35vw ; 
+    height: 12vh ;
+    display: flex ;
+    justify-content: center ;
+    align-items: center ;
+}
+
+.register-kg-input {
+    background-color: black ;
+    color: white ;
+    border: 4px solid white ; /* cambia dashed por solid */
+    border-radius: 20px ;
+    padding: 10px 10px ;
+    font-size: 25px ;
+    outline: none ;
+}
+
+.register-kg-input::placeholder {
+    color: gray;
+    opacity: 0.7;
+}
+
+.register-kg-input:focus { /* Efecto cuando está en foco */
+    border-color: white;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.register-kg-submit-container { /* Contenedor Cuatro */
+    width: 30vw ;
+    height: 10vh ;
+    display: flex ;
+    justify-content: center ;
+    align-items: center ;
+}
+
+.register-kg-submit-button {
+    background: linear-gradient(to right, #0057FF, #C157FF); /* Degradado azul a morado */
+    color: white ;
+    font-weight: bold ;
+    font-size: 16px ;
+    border: 2px solid white ;
+    border-radius: 25px ;
+    padding: 10px 25px ;
+    cursor: pointer ;
+    text-transform: uppercase ;
+    transition: 0.3s ease-in-out ;
+}
+
+/* Efecto al pasar el mouse */
+.register-kg-submit-button:hover {
+    transform: scale(1.05) ;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.8) ;
+}
+
+/* Efecto al presionar */
+.register-kg-submit-button:active {
+    transform: scale(0.95) ;
+}
+
+.register-kg-help-container { /* Contenedor Cinco */
+    width: 40vw ;
+    height: 10vh ;
+    display: flex ;
+    justify-content: center ;
+    align-items: center ;
+}
+
+.register-kg-help-container h3 {
+    color: #ffffff ; 
+    font-family: 'Dingos Stamp', sans-serif ;
+    font-size: 20px ;
+    font-weight: 100 ;
+    text-decoration: underline ;
+}
+
+.register-kg-footer {
+    width: 50vw ;
+    height: 15vh ;
+    display: flex ;
+    justify-content: end ;
+    align-items: center ;
+}
+
+.register-kg-store-link {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    transition: color 0.3s ease;
+}
+
+.register-kg-store-link:hover {
+    color: #C157FF;
+}

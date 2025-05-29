@@ -15,21 +15,21 @@ export default function ProfilesKG() {
     const navigate = useNavigate();
 
     return (
-        <div className="containerProfiles">
-            <div className="containerOne">
-                <img className="logoKomuna" src={LogoKomunaGO} alt="Logo KomunaGO" />
+        <div className="profiles-kg-container">
+            <div className="profiles-kg-header">
+                <img className="profiles-kg-logo" src={LogoKomunaGO} alt="Logo KomunaGO" />
                 <button 
-                    className="back-button"
+                    className="profiles-kg-back-button"
                     onClick={() => navigate('/login-tourist')}
                 >
-                    <img className="buttonBack" src={AtrasIcon} alt="Volver atrás" />
+                    <img className="profiles-kg-back-icon" src={AtrasIcon} alt="Volver atrás" />
                 </button>
             </div>
-            <div className="containerTwo">
-                <div className="ContainerChart">
-                    <div className="containerTree">
+            <div className="profiles-kg-main">
+                <div className="profiles-kg-chart">
+                    <div className="profiles-kg-views">
                         <h2>13 VIEW</h2>
-                        <svg className="pathLines" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                        <svg className="profiles-kg-path" viewBox="0 0 1200 120" preserveAspectRatio="none">
                             <path 
                                 d="M0,60 L1200,60" 
                                 stroke="#FF0000" 
@@ -39,42 +39,42 @@ export default function ProfilesKG() {
                             />
                         </svg>
                     </div>
-                    <div className="containerFour">
-                        <div className="containerStatementOne">
+                    <div className="profiles-kg-info">
+                        <div className="profiles-kg-info-title">
                             <h2>Perfil de Local</h2>
                         </div>
-                        <div className="containerStatementTwo">
+                        <div className="profiles-kg-info-menu">
                             <h2>Menú</h2>
                         </div>
-                        <div className="containerStatementTree">
+                        <div className="profiles-kg-info-location">
                             <h2>Ubicación</h2>
                         </div>
                     </div>
-                    <div className="containerFive">
-                        <div className="containerimgUne">
-                            <img className="FotoT1" src={Foto1} alt="Foto del Local" />
+                    <div className="profiles-kg-images">
+                        <div className="profiles-kg-image-container">
+                            <img className="profiles-kg-photo" src={Foto1} alt="Foto del Local" />
                         </div>
-                        <div className="containerimgTwo">
+                        <div className="profiles-kg-image-container">
                             <a 
                                 href="/Dosc/MenúT6.pdf" 
                                 target="_blank" 
                                 rel="noopener noreferrer"
                             >
-                                <img className="MenuT1" src={MenuT6} alt="Menu del Local" />
+                                <img className="profiles-kg-menu" src={MenuT6} alt="Menu del Local" />
                             </a>
                         </div>
-                        <div className="containerimgTree">
+                        <div className="profiles-kg-image-container">
                             <a 
                                 href="https://www.google.com/maps/place/Comuna+13,+Medell%C3%ADn,+Antioquia" 
                                 target="_blank" 
                                 rel="noopener noreferrer"
                             >
-                                <img className="GoogleMaps" src={GoogleMapsIcon} alt="Ver ubicación en Google Maps" />
+                                <img className="profiles-kg-maps" src={GoogleMapsIcon} alt="Ver ubicación en Google Maps" />
                             </a>
                         </div>
                     </div>
-                    <div className="containerSix">
-                        <svg className="pathLinesTwo" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                    <div className="profiles-kg-divider">
+                        <svg className="profiles-kg-path-two" viewBox="0 0 1200 120" preserveAspectRatio="none">
                             <path 
                                 d="M0,60 L1200,60" 
                                 stroke="#FF0000" 
@@ -84,16 +84,16 @@ export default function ProfilesKG() {
                             />
                         </svg>
                     </div>
-                    <div className="containerSeven">
-                        <div className="containerTex">
+                    <div className="profiles-kg-details">
+                        <div className="profiles-kg-labels">
                             <h2>Cupo de Personas</h2>
                             <h2>Horario Laboral</h2>
                         </div>
-                        <div className="containerData">
+                        <div className="profiles-kg-values">
                             <h2>10</h2>
                             <h2>8 AM - 10 PM</h2>
                         </div>
-                        <div className="containerSocialNetworks">
+                        <div className="profiles-kg-social">
                             <a 
                                 href="https://walink.co/0f2978" 
                                 target="_blank" 
