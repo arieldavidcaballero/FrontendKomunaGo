@@ -18,8 +18,8 @@ export default function LoginTouristKG() {
         setActiveFilter(filter);
     };
 
-    const handleNavigate = (path) => {
-        navigate(path);
+    const handleNavigate = (image) => {
+        navigate('/profile-store', { state: { selectedImage: image } });
     };
 
     return (
@@ -28,7 +28,7 @@ export default function LoginTouristKG() {
                 <img src={LogoKomunaGO} alt="Logo KomunaGO" />
                 <button 
                     className="login-tourist-kg-back-button" 
-                    onClick={() => handleNavigate('/start')}
+                    onClick={() => navigate('/')}
                 >
                     <img className="login-tourist-kg-back-icon" src={BackButton} alt="Volver" />
                 </button>
@@ -51,7 +51,7 @@ export default function LoginTouristKG() {
                     <button 
                         key={index}
                         className="login-tourist-kg-store-button"
-                        onClick={() => handleNavigate('/profiles')}
+                        onClick={() => handleNavigate(image)}
                     >
                         <img className="login-tourist-kg-store-image" src={image} alt={`Tienda ${index + 1}`} />
                     </button>

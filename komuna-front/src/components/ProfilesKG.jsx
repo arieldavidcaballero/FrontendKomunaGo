@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import LogoKomunaGO from '../image/Logo_KomunaGO.png';
 import AtrasIcon from '../image/Atras.png';
 import Foto1 from '../image/Foto1.jpeg';
-import MenuT6 from '../image/MenuT6.jpeg';
+import Menu from '../image/MenuT6.jpeg';
 import GoogleMapsIcon from '../image/GoogleMaps.png';
 import WhatsappIcon from '../image/WhatsappIcon.png';
 import TikTokIcon from '../image/TikTokIcon.png';
@@ -20,7 +20,7 @@ export default function ProfilesKG() {
                 <img className="profiles-kg-logo" src={LogoKomunaGO} alt="Logo KomunaGO" />
                 <button 
                     className="profiles-kg-back-button"
-                    onClick={() => navigate('/login-tourist')}
+                    onClick={() => navigate('/turist-store')}
                 >
                     <img className="profiles-kg-back-icon" src={AtrasIcon} alt="Volver atrás" />
                 </button>
@@ -56,11 +56,11 @@ export default function ProfilesKG() {
                         </div>
                         <div className="profiles-kg-image-container">
                             <a 
-                                href="/Dosc/MenúT6.pdf" 
+                                href="/Docs/MenuT6.pdf" 
                                 target="_blank" 
                                 rel="noopener noreferrer"
                             >
-                                <img className="profiles-kg-menu" src={MenuT6} alt="Menu del Local" />
+                                <img className="profiles-kg-menu" src={Menu} alt="Menu del Local" />
                             </a>
                         </div>
                         <div className="profiles-kg-image-container">
