@@ -38,12 +38,8 @@
 }
 
 .register-kg-back-container { /* Contenedor Uno */
-    width: 2vw ;
-    height: 4vh ;
-    display: flex ;
-    flex-direction: row ;
-    display: flex ;
-    align-items: center ;
+    margin-top: 10px;
+    margin-left: 10px;
 }
 
 .register-kg-back-icon {
@@ -53,11 +49,10 @@
 }
 
 .register-kg-logo-container { /* Contenerdo Dos */
-    width: 33vw ;
-    height: 12vh ;
     display: flex ;
-    justify-content: start ;
+    justify-content: center ;
     align-items: center ;
+    gap: 20px ;
 }
 
 .register-kg-logo {
@@ -71,8 +66,6 @@
 }
 
 .register-kg-form { /* Contenerdo Tres */
-    width: 33vw ;
-    height: 45vh ;
     display: flex ;
     align-items: center ;
     flex-direction: column ;
@@ -80,14 +73,17 @@
 }
 
 .register-kg-input-group { /* Contenedor Tres Cero */
-    width: 35vw ; 
-    height: 12vh ;
+    width: 90% ;
+    gap: 10px ;
+    height: 80px;
     display: flex ;
     justify-content: center ;
     align-items: center ;
+    flex-direction: column ;
 }
 
 .register-kg-input {
+    width: 100%;
     background-color: black ;
     color: white ;
     border: 4px solid white ; /* cambia dashed por solid */
@@ -108,8 +104,8 @@
 }
 
 .register-kg-submit-container { /* Contenedor Cuatro */
-    width: 30vw ;
-    height: 10vh ;
+    width: 80% ;
+    height: 70px;
     display: flex ;
     justify-content: center ;
     align-items: center ;
@@ -119,6 +115,7 @@
     background: linear-gradient(to right, #0057FF, #C157FF); /* Degradado azul a morado */
     color: white ;
     font-weight: bold ;
+    width: 100%;
     font-size: 16px ;
     border: 2px solid white ;
     border-radius: 25px ;
@@ -139,28 +136,28 @@
     transform: scale(0.95) ;
 }
 
+.register-kg-footer {
+    width: 100% ;
+    display: flex ;
+    justify-content: center ;
+    align-items: center ;
+    gap: 40% ;
+}
+
 .register-kg-help-container { /* Contenedor Cinco */
-    width: 40vw ;
     height: 10vh ;
     display: flex ;
     justify-content: center ;
     align-items: center ;
+    
 }
 
 .register-kg-help-container h3 {
     color: #ffffff ; 
     font-family: 'Dingos Stamp', sans-serif ;
     font-size: 20px ;
-    font-weight: 100 ;
     text-decoration: underline ;
-}
-
-.register-kg-footer {
-    width: 50vw ;
-    height: 15vh ;
-    display: flex ;
-    justify-content: end ;
-    align-items: center ;
+    
 }
 
 .register-kg-store-link {

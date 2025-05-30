@@ -105,6 +105,8 @@ export default function LoginStoreKG() {
                     </div>
                 </form>
 
+                
+
                 <div className="login-store-kg-register-container">
                     <button 
                         className="login-store-kg-register-button"
