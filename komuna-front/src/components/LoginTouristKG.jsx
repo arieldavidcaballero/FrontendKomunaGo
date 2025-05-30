@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-// Importaciones de imágenes con nombres de archivo seguros
 import LogoKomunaGO from '../image/Logo_KomunaGO.png';
 import BackButton from '../image/Back.png';
 import B1Image from '../image/B1.jpg';

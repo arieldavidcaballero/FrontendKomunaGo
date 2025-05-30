@@ -17,12 +17,11 @@
 }
 
 .login-tourist-kg-header { /* Container Uno*/
-    width: 100vw;
-    height: 18vh;
+    width: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    flex-direction: row;
+    padding: 0 20px;
 }
 
 .login-tourist-kg-header img {
@@ -30,10 +29,16 @@
     height: auto;
 }
 
-.login-tourist-kg-header .login-tourist-kg-back-icon {
+.login-tourist-kg-back-button {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+.login-tourist-kg-back-button img {
     width: 130px;
     height: auto;
-    margin-left: 800px;
 }
 
 .login-tourist-kg-divider { /* Container Dos*/
@@ -58,17 +63,18 @@
 
 .login-tourist-kg-stores { /* Container Tres*/
     width: 100vw;
-    height: 50vh;
+    height: 45vh;
     display: flex;
     justify-content: center;
     flex-direction: row;
-    padding-top: 30px;
+    gap: 10px;
+    margin-top: 20px;
 }
 
 .login-tourist-kg-store-button {
-    width: 200px;
-    height: auto;
-    margin-left: 40px;
+    border: none;
+    width: 200px; 
+    height: 50vh; 
 }
 
 .login-tourist-kg-store-button { /* Efecto para imágenes y botones */
@@ -83,17 +89,24 @@
     transform: scale(0.95); /* Efecto de presión */
 }
 
+.login-tourist-kg-store-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+}
+
 .login-tourist-kg-filters { /* Container Cuatro*/
     width: 100vw;
     height: 27vh;
     display: flex;
     justify-content: space-around;
     align-items: flex-end;
+    position: relative;
 }
 
 .login-tourist-kg-filter-button {
-    width: 190px; /* <-- Nuevo largo */
-    height: 80px; /* <-- Nuevo alto */
+    width: 190px;
+    height: 80px;
     border: none;
     padding: 12px 24px;
     font-size: 16px;
@@ -105,6 +118,16 @@
     color: black;
     position: relative;
     overflow: hidden;
+    transform: translateY(0);
+    padding-bottom: 30px;
+    margin-bottom: -20px;
+}
+
+.login-tourist-kg-filter-button:hover {
+    transform: translateY(-20px);
+    box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.2);
+    color: white;
+    
 }
 
 /* Colores personalizados */
@@ -114,22 +137,8 @@
 .login-tourist-kg-filter-button.manualidades { background-color: #A600F5; }
 .login-tourist-kg-filter-button.todo { background-color: #0038FF;}
 
-/* Fondo decorativo para el botón activo */
-.login-tourist-kg-filter-button.active::before {
-    content: "";
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background-image: url('/Image/mandala.png'); 
-    background-size: cover;
-    opacity: 0.3;
-    border-radius: 15px;
-    z-index: 0;
-}
-
+/* Estilo para el botón activo */
 .login-tourist-kg-filter-button.active {
-    transform: scaleX(1.40);
-    color: white;
     z-index: 1;
 }
 
