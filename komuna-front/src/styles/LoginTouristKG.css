@@ -62,8 +62,8 @@
 }
 
 .login-tourist-kg-stores { /* Container Tres*/
-    width: 100vw;
-    height: 45vh;
+    width: 100%;
+    height: 25%;
     display: flex;
     justify-content: center;
     flex-direction: row;
@@ -120,7 +120,7 @@
     overflow: hidden;
     transform: translateY(0);
     padding-bottom: 30px;
-    margin-bottom: -20px;
+    margin-bottom: 10px;
 }
 
 .login-tourist-kg-filter-button:hover {
