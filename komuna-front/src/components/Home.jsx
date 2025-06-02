@@ -3,11 +3,16 @@ import '../styles/HomeStyle.css'
 import LogoKomunaGO from '../image/Logo_KomunaGO.png';
 import BTienda from '../image/BTienda.jpg';
 import BTurista from '../image/BTurista.jpg';
+import VideoFondo from '../image/VideoFondoInicio.mp4';
 import { Link } from 'react-router-dom';
 
 export default function Home() {
     return (
         <div className='containerStart'>
+            <video className="backgroundVideo" autoPlay loop muted>
+                <source src={VideoFondo} type="video/mp4" />
+                Your browser does not support the video tag.
+            </video>
 
             <div className="containerOneHome">
                 <img src={LogoKomunaGO} alt="Logo KomunaGo" />
