@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import LogoKomunaGO from '../image/Logo_KomunaGO.png';
 import AtrasIcon from '../image/Atras.png';
@@ -13,6 +13,18 @@ import '../styles/ProfilesKG.css';
 
 export default function ProfilesKG() {
     const navigate = useNavigate();
+    const [modalContent, setModalContent] = useState(null);
+    const [isMenu, setIsMenu] = useState(false);
+
+    const handleImageClick = (image, isMenuImage = false) => {
+        setModalContent(image);
+        setIsMenu(isMenuImage);
+    };
+
+    const closeModal = () => {
+        setModalContent(null);
+        setIsMenu(false);
+    };
 
     return (
         <div className="profiles-kg-container">
@@ -51,17 +63,11 @@ export default function ProfilesKG() {
                         </div>
                     </div>
                     <div className="profiles-kg-images">
-                        <div className="profiles-kg-image-container">
+                        <div className="profiles-kg-image-container" onClick={() => handleImageClick(Foto1)}>
                             <img className="profiles-kg-photo" src={Foto1} alt="Foto del Local" />
                         </div>
-                        <div className="profiles-kg-image-container">
-                            <a 
-                                href="/Docs/MenuT6.pdf" 
-                                target="_blank" 
-                                rel="noopener noreferrer"
-                            >
-                                <img className="profiles-kg-menu" src={Menu} alt="Menu del Local" />
-                            </a>
+                        <div className="profiles-kg-image-container" onClick={() => handleImageClick(Menu, true)}>
+                            <img className="profiles-kg-menu" src={Menu} alt="Menu del Local" />
                         </div>
                         <div className="profiles-kg-image-container">
                             <a 
@@ -88,10 +94,12 @@ export default function ProfilesKG() {
                         <div className="profiles-kg-labels">
                             <h2>Cupo de Personas</h2>
                             <h2>Horario Laboral</h2>
+                            <h2>Categoría</h2>
                         </div>
                         <div className="profiles-kg-values">
-                            <h2>10</h2>
-                            <h2>8 AM - 10 PM</h2>
+                            <h2>20</h2>
+                            <h2>8 AM - 11 PM</h2>
+                            <h2>Restaurante</h2>
                         </div>
                         <div className="profiles-kg-social">
                             <a 
@@ -126,6 +134,22 @@ export default function ProfilesKG() {
                     </div>
                 </div>
             </div>
+
+            {/* Modal para mostrar imágenes */}
+            {modalContent && (
+                <div className="profiles-kg-modal active" onClick={closeModal}>
+                    <div className="profiles-kg-modal-content" onClick={e => e.stopPropagation()}>
+                        <img 
+                            src={modalContent} 
+                            alt="Contenido ampliado" 
+                            className={isMenu ? "profiles-kg-modal-menu" : "profiles-kg-modal-image"}
+                        />
+                        <button className="profiles-kg-modal-close" onClick={closeModal}>
+                            ×
+                        </button>
+                    </div>
+                </div>
+            )}
         </div>
     );
 }

@@ -11,11 +11,21 @@ import Foto3 from '../image/Foto3.jpeg';
 import Foto4 from '../image/Foto4.jpeg';
 import Foto5 from '../image/Foto5.jpeg';
 import Foto6 from '../image/Foto6.jpeg';
+import mandala from '../image/mandala.png';
 import '../styles/LoginTouristKG.css'; 
 
 export default function LoginTouristKG() {
     const navigate = useNavigate();
     const [activeFilter, setActiveFilter] = useState('todo');
+
+    const stores = [
+        { image: Foto1, name: "Tienda 1", categoriaLocal: 'mirador' },
+        { image: Foto2, name: "Tienda 2", categoriaLocal: 'cocteleria' },
+        { image: Foto3, name: "Tienda 3", categoriaLocal: 'manualidades' },
+        { image: Foto4, name: "Tienda 4", categoriaLocal: 'manualidades' },
+        { image: Foto5, name: "Tienda 5", categoriaLocal: 'manualidades' },
+        { image: Foto6, name: "Tienda 6", categoriaLocal: 'restaurante' }
+    ];
 
     const handleFilterClick = (filter) => {
         setActiveFilter(filter);
@@ -24,6 +34,10 @@ export default function LoginTouristKG() {
     const handleNavigate = (image) => {
         navigate('/profile-store', { state: { selectedImage: image } });
     };
+
+    const filteredStores = activeFilter === 'todo' 
+        ? stores 
+        : stores.filter(store => store.categoriaLocal === activeFilter);
 
     const sliderSettings = {
         dots: true,
@@ -51,15 +65,6 @@ export default function LoginTouristKG() {
         ]
     };
 
-    const stores = [
-        { image: Foto1, name: "Tienda 1" },
-        { image: Foto2, name: "Tienda 2" },
-        { image: Foto3, name: "Tienda 3" },
-        { image: Foto4, name: "Tienda 4" },
-        { image: Foto5, name: "Tienda 5" },
-        { image: Foto6, name: "Tienda 6" }
-    ];
-
     return (
         <div className='login-tourist-kg-container'>
             <div className="login-tourist-kg-header">
@@ -85,39 +90,60 @@ export default function LoginTouristKG() {
             </div>
 
             <div className="login-tourist-kg-stores">
-                <Slider {...sliderSettings}>
-                    {stores.map((store, index) => (
-                        <div key={index} className='tienda-card'>
-                            <div className='container-foto-local'>
-                                <img src={store.image} alt={`Foto ${store.name}`}/>
+                {filteredStores.length > 0 ? (
+                    <Slider {...sliderSettings}>
+                        {filteredStores.map((store, index) => (
+                            <div key={index} className='tienda-card'>
+                                <div className='container-foto-local'>
+                                    <img src={store.image} alt={`Foto ${store.name}`}/>
+                                </div>
+                                <div className='container-nombre-local'>
+                                    <h3>{store.name}</h3>
+                                </div>
+                                <div className='container-informacion-local'>
+                                    <button onClick={() => handleNavigate(store.image)}>Ver más</button>
+                                </div>
                             </div>
-                            <div className='container-nombre-local'>
-                                <h3>{store.name}</h3>
-                            </div>
-                            <div className='container-informacion-local'>
-                                <button onClick={() => handleNavigate(store.image)}>Ver más</button>
-                            </div>
-                        </div>
-                    ))}
-                </Slider>
+                        ))}
+                    </Slider>
+                ) : (
+                    <div className="no-stores-message">
+                        <h2>No hay tiendas disponibles en esta categoría</h2>
+                    </div>
+                )}
             </div>
 
             <div className="login-tourist-kg-filters">
-                {[
-                    { id: 'restaurante', label: 'RESTAURANTE' },
-                    { id: 'mirador', label: 'MIRADOR' },
-                    { id: 'cocteleria', label: 'COCTELERIA' },
-                    { id: 'manualidades', label: 'MANUALIDADES' },
-                    { id: 'todo', label: 'TODO' }
-                ].map(({ id, label }) => (
-                    <button 
-                        key={id}
-                        className={`login-tourist-kg-filter-button ${id} ${activeFilter === id ? 'active' : ''}`}
-                        onClick={() => handleFilterClick(id)}
-                    >
-                        <span>{label}</span>
-                    </button>
-                ))}
+                <button 
+                    className={`btnFilter restaurante ${activeFilter === 'restaurante' ? 'active' : ''}`}
+                    onClick={() => handleFilterClick('restaurante')}
+                >
+                    <span>RESTAURANTE</span>
+                </button>
+                <button 
+                    className={`btnFilter mirador ${activeFilter === 'mirador' ? 'active' : ''}`}
+                    onClick={() => handleFilterClick('mirador')}
+                >
+                    <span>MIRADOR</span>
+                </button>
+                <button 
+                    className={`btnFilter cocteleria ${activeFilter === 'cocteleria' ? 'active' : ''}`}
+                    onClick={() => handleFilterClick('cocteleria')}
+                >
+                    <span>COCTELERIA</span>
+                </button>
+                <button 
+                    className={`btnFilter manualidades ${activeFilter === 'manualidades' ? 'active' : ''}`}
+                    onClick={() => handleFilterClick('manualidades')}
+                >
+                    <span>MANUALIDADES</span>
+                </button>
+                <button 
+                    className={`btnFilter todo ${activeFilter === 'todo' ? 'active' : ''}`}
+                    onClick={() => handleFilterClick('todo')}
+                >
+                    <span>TODO</span>
+                </button>
             </div>
         </div>
     );

@@ -5,288 +5,314 @@
 }
 
 .profiles-kg-container {
-    width: 100vw;
+    width: 100%;
     height: 100vh;
     background-color: rgb(0, 0, 0);
     display: flex;
     align-items: center;
     flex-direction: column;
+    padding: 1% 5%;
+    overflow-y: auto;
 }
 
 .profiles-kg-header {
-    width: 80vw;
-    height: 15vh;
+    width: 100%;
+    max-width: 1200px;
+    height: 8vh;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 1%;
 }
 
 .profiles-kg-logo {
-    width: 400px;
+    width: 30%;
+    min-width: 250px;
+    max-width: 400px;
     height: auto;
-    transition: transform 0.3s ease;
 }
 
 .profiles-kg-back-button {
     background: none;
     border: none;
     cursor: pointer;
-    transition: transform 0.3s ease;
-}
-
-.profiles-kg-back-button:hover {
-    transform: scale(1.1);
 }
 
 .profiles-kg-back-icon {
-    margin-top: 10px;
-    width: 50px;
+    width: 40px;
     height: auto;
-    transition: transform 0.3s ease;
 }
 
 .profiles-kg-main {
-    width: 80vw;
-    height: 85vh;
+    width: 100%;
+    max-width: 1200px;
+    height: 88vh;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
 }
 
 .profiles-kg-chart {
-    width: 80vw;
-    height: 80vh;
+    width: 100%;
+    height: 100%;
     background-color: rgb(0, 0, 0);
     border: 6px dashed white;
-    border-radius: 3%;
-    animation: glowBorder 2s infinite ease-in-out;
-    padding: 2rem;
-}
-
-@keyframes glowBorder {
-    0% { box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff; }
-    50% { box-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff; }
-    100% { box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff; }
-}
-
-/* Sección de vistas */
-.profiles-kg-views {
-    width: 100%;
-    height: 15vh;
+    border-radius: 20px;
+    padding: 2%;
     display: flex;
-    align-items: center;
     flex-direction: column;
+}
+
+.profiles-kg-views {
+    text-align: center;
+    margin-bottom: 1%;
+    height: 10%;
 }
 
 .profiles-kg-views h2 {
     color: #ffffff;
-    font-family: 'Dingos Stamp', sans-serif;
-    font-size: 40px;
-    font-weight: 900;
-    margin: 1rem 0;
+    font-size: 2.5em;
+    font-weight: bold;
+    margin-bottom: 1%;
 }
 
-.profiles-kg-path,
-.profiles-kg-path-two {
-    width: 90%;
-    height: 40%;
-}
-
-.profiles-kg-path path,
-.profiles-kg-path-two path {
-    stroke: white;
-    stroke-width: 20;
-    stroke-dasharray: 14;
-    fill: none;
-}
-
-/* Sección de información */
 .profiles-kg-info {
-    width: 100%;
-    height: 5vh;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 2rem 0;
-}
-
-.profiles-kg-info-title,
-.profiles-kg-info-menu,
-.profiles-kg-info-location {
-    width: 30%;
-    text-align: center;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2%;
+    margin: 20px 0;
+    height: 5%;
 }
 
 .profiles-kg-info h2 {
     color: #ffffff;
-    font-family: 'Dingos Stamp', sans-serif;
-    font-size: 20px;
+    font-size: 1.2em;
+    text-align: center;
+    margin-bottom: 15px;
 }
 
-/* Sección de imágenes */
 .profiles-kg-images {
-    width: 100%;
-    height: 30vh;
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3%;
+    margin: 1% 0;
+    height: 45%;
     align-items: center;
-    margin: 2rem 0;
 }
 
 .profiles-kg-image-container {
-    width: 30%;
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 100%;
+    width: 100%;
+    padding: 10px;
 }
 
 .profiles-kg-photo,
-.profiles-kg-menu,
+.profiles-kg-menu {
+    width: 200px;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 15px;
+    border: 4px dashed white;
+    transition: transform 0.3s ease;
+}
+
 .profiles-kg-maps {
-    width: 170px;
-    height: auto;
-    border-radius: 10px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width: 200px;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 15px;
+    border: 4px dashed white;
+    transition: transform 0.3s ease;
 }
 
 .profiles-kg-photo:hover,
 .profiles-kg-menu:hover,
 .profiles-kg-maps:hover {
-    transform: scale(1.1);
-    box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+    transform: scale(1.05);
 }
 
-/* Sección de información adicional */
 .profiles-kg-details {
-    width: 100%;
-    height: 23.5vh;
-    display: flex;
-    justify-content: space-between;
-    margin-top: 2rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2%;
+    margin-top: 1%;
+    height: 25%;
 }
 
 .profiles-kg-labels,
 .profiles-kg-values {
-    width: 30%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    color: #ffffff;
+    text-align: left;
+    padding-left: 20%;
 }
 
 .profiles-kg-labels h2,
 .profiles-kg-values h2 {
-    color: #ffffff;
-    font-family: 'Dingos Stamp', sans-serif;
-    margin: 0.5rem 0;
-    text-align: center;
+    font-size: 1.2em;
+    margin: 0.5em 0;
 }
 
-/* Redes sociales */
+.profiles-kg-category {
+    color: #ffffff;
+    font-size: 1.2em;
+    margin: 0.5em 0;
+}
+
 .profiles-kg-social {
-    width: 30%;
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 1rem;
+    gap: 25px;
 }
 
 .profiles-kg-social img {
-    width: 60px;
-    height: auto;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width: 50px;
+    height: 50px;
+    transition: transform 0.3s ease;
 }
 
 .profiles-kg-social img:hover {
+    transform: scale(1.2);
+}
+
+.profiles-kg-path,
+.profiles-kg-path-two {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, white, transparent);
+    margin: 15px 0;
+}
+
+/* Modal para las imágenes */
+.profiles-kg-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.profiles-kg-modal.active {
+    display: flex;
+}
+
+.profiles-kg-modal-content {
+    position: relative;
+    max-width: 70%;
+    max-height: 80vh;
+    background-color: transparent;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.profiles-kg-modal-image {
+    width: 600px;
+    height: auto;
+    max-height: 70vh;
+    object-fit: contain;
+    border-radius: 10px;
+}
+
+/* Estilos específicos para el menú */
+.profiles-kg-modal-menu {
+    width: 450px;
+    height: auto;
+    max-height: 80vh;
+    object-fit: contain;
+    border-radius: 10px;
+    overflow-y: auto;
+}
+
+.profiles-kg-modal-close {
+    position: absolute;
+    top: -30px;
+    right: -30px;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    background: rgba(0, 0, 0, 0.5);
+    border: 2px solid white;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.profiles-kg-modal-close:hover {
+    background-color: rgba(255, 255, 255, 0.2);
     transform: scale(1.1);
-    box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
 }
 
-.profiles-kg-social a {
-    color: inherit;
-    text-decoration: none;
+/* Estilo para la barra de desplazamiento del menú */
+.profiles-kg-modal-menu::-webkit-scrollbar {
+    width: 8px;
 }
 
-/* Estilos responsivos */
-@media (max-width: 1200px) {
-    .profiles-kg-logo {
-        width: 400px;
-    }
+.profiles-kg-modal-menu::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+}
 
-    .profiles-kg-back-icon {
-        width: 80px;
-    }
+.profiles-kg-modal-menu::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 4px;
+}
 
-    .profiles-kg-views h2 {
-        font-size: 32px;
-    }
-
-    .profiles-kg-photo,
-    .profiles-kg-menu,
-    .profiles-kg-maps {
-        width: 150px;
-    }
-
-    .profiles-kg-social img {
-        width: 50px;
-    }
+.profiles-kg-modal-menu::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.5);
 }
 
 @media (max-width: 768px) {
-    .profiles-kg-header,
-    .profiles-kg-main {
-        width: 90vw;
+    .profiles-kg-container {
+        padding: 1% 2%;
     }
 
-    .profiles-kg-chart {
-        width: 90vw;
+    .profiles-kg-images {
+        grid-template-columns: repeat(3, 1fr);
         height: auto;
-        min-height: 80vh;
     }
-
-    .profiles-kg-logo {
-        width: 300px;
+    
+    .profiles-kg-info {
+        grid-template-columns: repeat(3, 1fr);
     }
-
-    .profiles-kg-back-icon {
-        width: 60px;
+    
+    .profiles-kg-details {
+        grid-template-columns: repeat(3, 1fr);
     }
-
-    .profiles-kg-views h2 {
-        font-size: 28px;
-    }
-
+    
     .profiles-kg-photo,
     .profiles-kg-menu,
     .profiles-kg-maps {
-        width: 120px;
+        max-height: 150px;
+    }
+    
+    .profiles-kg-logo {
+        width: 40%;
+    }
+
+    .profiles-kg-views h2 {
+        font-size: 1.8em;
+    }
+
+    .profiles-kg-info h2 {
+        font-size: 1em;
     }
 
     .profiles-kg-social img {
         width: 40px;
-    }
-}
-
-@media (max-width: 480px) {
-    .profiles-kg-logo {
-        width: 200px;
-    }
-
-    .profiles-kg-back-icon {
-        width: 40px;
-    }
-
-    .profiles-kg-views h2 {
-        font-size: 24px;
-    }
-
-    .profiles-kg-photo,
-    .profiles-kg-menu,
-    .profiles-kg-maps {
-        width: 100px;
-    }
-
-    .profiles-kg-social img {
-        width: 30px;
+        height: 40px;
     }
 }
 
