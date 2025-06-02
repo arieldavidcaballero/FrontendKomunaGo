@@ -31,26 +31,40 @@
 .register-kg-chart {
     margin: 20px;
     background: rgb(0, 0, 0);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
     width: 100%;
     max-width: 500px;
     padding: 2rem;
     position: relative;
-    animation: glowBorder 2s infinite ease-in-out;
-    border: 10px dashed white ;
-    border-radius: 5% ;
-    animation: glowBorder 2s infinite ease-in-out ;
+    border: 10px dashed white;
+    border-radius: 5%;
 }
 
 .register-kg-back-container { /* Contenedor Uno */
     position: absolute;
     top: 10px;
     left: 20px;
+    background: transparent;
+}
+
+.register-kg-back-button {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .register-kg-back-icon {
-    width: 40px ;
-    height: auto ;
+    width: 40px;
+    height: auto;
+    transition: transform 0.2s ease;
+    filter: brightness(1); /* Asegura que la imagen se vea clara */
+}
+
+.register-kg-back-icon:hover {
+    transform: scale(1.1);
 }
 
 .register-kg-logo-container { /* Contenerdo Dos */
@@ -77,29 +91,47 @@
 }
 
 .register-kg-input-group { /* Contenedor Tres Cero */
-    width: 100% ;
-    gap: 10px ;
-    height: 100px;
-    display: flex ;
-    justify-content: center ;
-    align-items: center ;
+    width: 100%;
+    gap: 10px;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     flex-direction: row;
+    padding: 10px;
 }
 
 .register-kg-input {
     width: 80%;
-    background-color: black ;
-    color: white ;
-    border: 4px solid white ; /* cambia dashed por solid */
-    border-radius: 20px ;
-    padding: 10px 10px ;
-    font-size: 20px ;
-    outline: none ;
+    background-color: black;
+    color: white;
+    border: 4px solid white;
+    border-radius: 20px;
+    padding: 10px;
+    font-size: 20px;
+    outline: none;
+    height: 45px; /* Altura fija para el input */
 }
 
 .register-kg-enter-button {
-    width: 50px;
-    height: auto;
+    width: 50px; /* Reducido para que coincida con la altura del input */
+    height: auto; /* Altura fija para mantener proporción */
+    padding: 0;
+    margin-left: -5px; /* Acerca el botón al input */
+    transition: transform 0.2s ease;
+    display: flex;
+    align-items: center;
+    border: 0;
+}
+
+.register-kg-enter-button img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.register-kg-enter-button:hover {
+    transform: scale(1.1);
 }
 
 .register-kg-input::placeholder {

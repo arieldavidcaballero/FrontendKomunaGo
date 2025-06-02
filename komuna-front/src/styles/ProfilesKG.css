@@ -353,4 +353,33 @@
 
 .profiles-kg-close-pdf:hover {
     background: #cc0000;
+}
+
+.profiles-kg-no-photo,
+.profiles-kg-no-menu,
+.profiles-kg-no-location {
+    width: 100%;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #2222;
+    color: white;
+    font-size: 1rem;
+    border-radius: 8px;
+}
+
+.profiles-kg-photos-preview {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.profiles-kg-photo-preview {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 4px;
+    cursor: pointer;
 } 

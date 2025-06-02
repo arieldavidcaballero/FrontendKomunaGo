@@ -166,6 +166,11 @@ select.login-store-kg-input {
     transform: scale(0.95) ;
 }
 
+.login-store-kg-register-button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
 /* Botón de ayuda */
 .login-store-kg-help-container {
     text-align: center;
@@ -225,4 +230,15 @@ select.login-store-kg-input {
     .login-store-kg-input {
         padding: 10px 12px;
     }
+}
+
+.login-store-kg-error {
+    color: #ff3333;
+    background-color: #ffebeb;
+    padding: 10px;
+    border-radius: 4px;
+    margin: 10px 0;
+    text-align: center;
+    font-size: 14px;
+    border: 1px solid #ff9999;
 } 

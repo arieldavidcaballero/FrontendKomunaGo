@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import LogoKomunaGO from '../image/Logo_KomunaGO.png';
 import AtrasIcon from '../image/Atras.png';
-import Foto1 from '../image/Foto1.jpeg';
-import Menu from '../image/MenuT6.jpeg';
 import GoogleMapsIcon from '../image/GoogleMaps.png';
 import WhatsappIcon from '../image/WhatsappIcon.png';
 import TikTokIcon from '../image/TikTokIcon.png';
@@ -13,8 +11,15 @@ import '../styles/ProfilesKG.css';
 
 export default function ProfilesKG() {
     const navigate = useNavigate();
+    const location = useLocation();
+    const store = location.state?.selectedStore;
     const [modalContent, setModalContent] = useState(null);
     const [isMenu, setIsMenu] = useState(false);
+
+    if (!store) {
+        navigate('/turist-store');
+        return null;
+    }
 
     const handleImageClick = (image, isMenuImage = false) => {
         setModalContent(image);
@@ -40,7 +45,7 @@ export default function ProfilesKG() {
             <div className="profiles-kg-main">
                 <div className="profiles-kg-chart">
                     <div className="profiles-kg-views">
-                        <h2>13 VIEW</h2>
+                        <h2>{store.name}</h2>
                         <svg className="profiles-kg-path" viewBox="0 0 1200 120" preserveAspectRatio="none">
                             <path 
                                 d="M0,60 L1200,60" 
@@ -63,20 +68,32 @@ export default function ProfilesKG() {
                         </div>
                     </div>
                     <div className="profiles-kg-images">
-                        <div className="profiles-kg-image-container" onClick={() => handleImageClick(Foto1)}>
-                            <img className="profiles-kg-photo" src={Foto1} alt="Foto del Local" />
+                        <div className="profiles-kg-image-container" onClick={() => store.image && handleImageClick(store.image)}>
+                            {store.image ? (
+                                <img className="profiles-kg-photo" src={store.image} alt="Foto del Local" />
+                            ) : (
+                                <div className="profiles-kg-no-photo">Sin foto</div>
+                            )}
                         </div>
-                        <div className="profiles-kg-image-container" onClick={() => handleImageClick(Menu, true)}>
-                            <img className="profiles-kg-menu" src={Menu} alt="Menu del Local" />
+                        <div className="profiles-kg-image-container" onClick={() => store.menu && handleImageClick(store.menu, true)}>
+                            {store.menu ? (
+                                <img className="profiles-kg-menu" src={store.menu} alt="Menu del Local" />
+                            ) : (
+                                <div className="profiles-kg-no-menu">Sin menú</div>
+                            )}
                         </div>
                         <div className="profiles-kg-image-container">
-                            <a 
-                                href="https://www.google.com/maps/place/Comuna+13,+Medell%C3%ADn,+Antioquia" 
-                                target="_blank" 
-                                rel="noopener noreferrer"
-                            >
-                                <img className="profiles-kg-maps" src={GoogleMapsIcon} alt="Ver ubicación en Google Maps" />
-                            </a>
+                            {store.ubicacion ? (
+                                <a 
+                                    href={store.ubicacion}
+                                    target="_blank" 
+                                    rel="noopener noreferrer"
+                                >
+                                    <img className="profiles-kg-maps" src={GoogleMapsIcon} alt="Ver ubicación en Google Maps" />
+                                </a>
+                            ) : (
+                                <div className="profiles-kg-no-location">Sin ubicación</div>
+                            )}
                         </div>
                     </div>
                     <div className="profiles-kg-divider">
@@ -97,39 +114,47 @@ export default function ProfilesKG() {
                             <h2>Categoría</h2>
                         </div>
                         <div className="profiles-kg-values">
-                            <h2>20</h2>
-                            <h2>8 AM - 11 PM</h2>
-                            <h2>Restaurante</h2>
+                            <h2>{store.cupo_personas || 'No especificado'}</h2>
+                            <h2>{store.horario || 'No especificado'}</h2>
+                            <h2>{store.categoriaLocal}</h2>
                         </div>
                         <div className="profiles-kg-social">
-                            <a 
-                                href="https://walink.co/0f2978" 
-                                target="_blank" 
-                                rel="noopener noreferrer"
-                            >
-                                <img src={WhatsappIcon} alt="Contactar por WhatsApp" />
-                            </a>
-                            <a 
-                                href="https://www.tiktok.com/@arielc.93" 
-                                target="_blank" 
-                                rel="noopener noreferrer"
-                            >
-                                <img src={TikTokIcon} alt="Seguir en TikTok" />
-                            </a>
-                            <a 
-                                href="https://www.instagram.com/arielc.93" 
-                                target="_blank" 
-                                rel="noopener noreferrer"
-                            >
-                                <img src={InstagramIcon} alt="Seguir en Instagram" />
-                            </a>
-                            <a 
-                                href="https://www.facebook.com/share" 
-                                target="_blank" 
-                                rel="noopener noreferrer"
-                            >
-                                <img src={FacebookIcon} alt="Compartir en Facebook" />
-                            </a>
+                            {store.redes_sociales?.whatsapp && (
+                                <a 
+                                    href={store.redes_sociales.whatsapp}
+                                    target="_blank" 
+                                    rel="noopener noreferrer"
+                                >
+                                    <img src={WhatsappIcon} alt="Contactar por WhatsApp" />
+                                </a>
+                            )}
+                            {store.redes_sociales?.tiktok && (
+                                <a 
+                                    href={store.redes_sociales.tiktok}
+                                    target="_blank" 
+                                    rel="noopener noreferrer"
+                                >
+                                    <img src={TikTokIcon} alt="Seguir en TikTok" />
+                                </a>
+                            )}
+                            {store.redes_sociales?.instagram && (
+                                <a 
+                                    href={store.redes_sociales.instagram}
+                                    target="_blank" 
+                                    rel="noopener noreferrer"
+                                >
+                                    <img src={InstagramIcon} alt="Seguir en Instagram" />
+                                </a>
+                            )}
+                            {store.redes_sociales?.facebook && (
+                                <a 
+                                    href={store.redes_sociales.facebook}
+                                    target="_blank" 
+                                    rel="noopener noreferrer"
+                                >
+                                    <img src={FacebookIcon} alt="Compartir en Facebook" />
+                                </a>
+                            )}
                         </div>
                     </div>
                 </div>

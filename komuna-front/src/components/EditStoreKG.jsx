@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { vendedorService } from '../services/vendedorService';
 import LogoKomunaGO from '../image/Logo_KomunaGO.png';
 import WhatsappIcon from '../image/WhatsappIcon.png';
 import TikTokIcon from '../image/TikTokIcon.png';
@@ -11,12 +12,13 @@ import '../styles/EditStoreKG.css';
 const EditStoreKG = () => {
     const navigate = useNavigate();
     const [isLoading, setIsLoading] = useState(false);
+    const [error, setError] = useState('');
     const [storeData, setStoreData] = useState({
         nombreLocal: '',
         cupoPersonas: '',
         horarioLaboral: '',
         categoria: '',
-        foto: null,
+        fotos: [],
         menu: null,
         whatsappUrl: '',
         tiktokUrl: '',
@@ -25,49 +27,120 @@ const EditStoreKG = () => {
         ubicacion: null
     });
 
+    useEffect(() => {
+        const vendedorId = localStorage.getItem('vendedorId');
+        if (!vendedorId) {
+            navigate('/');
+            return;
+        }
+
+        const cargarDatosVendedor = async () => {
+            try {
+                const vendedor = await vendedorService.obtenerVendedor(vendedorId);
+                setStoreData({
+                    nombreLocal: vendedor.nombre_tienda,
+                    cupoPersonas: vendedor.cupo_personas || '',
+                    horarioLaboral: vendedor.horario || '',
+                    categoria: vendedor.tipo_negocio,
+                    fotos: vendedor.fotos || [],
+                    menu: vendedor.menu,
+                    whatsappUrl: vendedor.redes_sociales?.whatsapp || '',
+                    tiktokUrl: vendedor.redes_sociales?.tiktok || '',
+                    instagramUrl: vendedor.redes_sociales?.instagram || '',
+                    facebookUrl: vendedor.redes_sociales?.facebook || '',
+                    ubicacion: vendedor.ubicacion
+                });
+            } catch (err) {
+                setError('Error al cargar los datos del vendedor');
+            }
+        };
+
+        cargarDatosVendedor();
+    }, [navigate]);
+
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         setStoreData(prevState => ({
             ...prevState,
             [name]: value
         }));
+        setError('');
     };
 
-    const handleFileUpload = (type, e) => {
+    const handleFileUpload = async (type, e) => {
         const file = e.target.files[0];
         if (file) {
-            const reader = new FileReader();
-            reader.onloadend = () => {
-                setStoreData(prevState => ({
-                    ...prevState,
-                    [type]: reader.result
-                }));
-            };
-            reader.readAsDataURL(file);
+            try {
+                const base64 = await convertToBase64(file);
+                if (type === 'foto') {
+                    setStoreData(prevState => ({
+                        ...prevState,
+                        fotos: [...prevState.fotos, base64]
+                    }));
+                } else {
+                    setStoreData(prevState => ({
+                        ...prevState,
+                        [type]: base64
+                    }));
+                }
+            } catch (err) {
+                setError('Error al procesar la imagen');
+            }
         }
     };
 
-    const handleSubmit = (e) => {
+    const convertToBase64 = (file) => {
+        return new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = () => resolve(reader.result);
+            reader.onerror = (error) => reject(error);
+        });
+    };
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
         setIsLoading(true);
+        setError('');
         
-        // Simulamos un proceso de guardado
-        setTimeout(() => {
+        const vendedorId = localStorage.getItem('vendedorId');
+        if (!vendedorId) {
+            setError('Error de autenticación');
             setIsLoading(false);
-            alert('Los cambios se guardarán cuando la API esté implementada');
-            console.log('Datos que se enviarán a la API:', storeData);
-        }, 1000);
+            return;
+        }
+
+        try {
+            await vendedorService.actualizarPerfil(vendedorId, {
+                cupo_personas: parseInt(storeData.cupoPersonas),
+                horario: storeData.horarioLaboral,
+                ubicacion: storeData.ubicacion,
+                menu: storeData.menu,
+                fotos: storeData.fotos,
+                redes_sociales: {
+                    whatsapp: storeData.whatsappUrl,
+                    tiktok: storeData.tiktokUrl,
+                    instagram: storeData.instagramUrl,
+                    facebook: storeData.facebookUrl
+                }
+            });
+
+            alert('Perfil actualizado exitosamente');
+        } catch (error) {
+            setError('Error al actualizar el perfil. Por favor intente nuevamente.');
+        } finally {
+            setIsLoading(false);
+        }
     };
 
     return (
         <div className="edit-store-kg-container">
-            {/* Header */}
             <div className="edit-store-kg-header">
                 <img src={LogoKomunaGO} alt="Logo KomunaGO" className="edit-store-kg-logo" />
                 <div className="edit-store-kg-buttons">
                     <button 
                         className="edit-store-kg-back"
-                        onClick={() => navigate(-2)}
+                        onClick={() => navigate('/')}
                         disabled={isLoading}
                     >
                         BACK
@@ -82,9 +155,9 @@ const EditStoreKG = () => {
                 </div>
             </div>
 
-            {/* Main Content */}
+            {error && <div className="edit-store-kg-error">{error}</div>}
+
             <div className="edit-store-kg-content">
-                {/* Left Section */}
                 <div className="edit-store-kg-left">
                     <div className="edit-store-kg-input-group">
                         <label className="edit-store-kg-label">Nombre del Local</label>
@@ -92,8 +165,8 @@ const EditStoreKG = () => {
                             type="text"
                             name="nombreLocal"
                             value={storeData.nombreLocal}
-                            onChange={handleInputChange}
                             className="edit-store-kg-input"
+                            disabled
                         />
                     </div>
 
@@ -105,6 +178,7 @@ const EditStoreKG = () => {
                             value={storeData.cupoPersonas}
                             onChange={handleInputChange}
                             className="edit-store-kg-input"
+                            disabled={isLoading}
                         />
                     </div>
 
@@ -117,78 +191,59 @@ const EditStoreKG = () => {
                             onChange={handleInputChange}
                             className="edit-store-kg-input"
                             placeholder="Ejemplo: 8 AM - 11 PM"
+                            disabled={isLoading}
                         />
                     </div>
 
                     <div className="edit-store-kg-input-group">
-                        <label className="edit-store-kg-label">Selecciona una categoría</label>
-                        <div className="edit-store-kg-select-container">
-                            <select
-                                name="categoria"
-                                value={storeData.categoria}
-                                onChange={handleInputChange}
-                                className="edit-store-kg-select"
-                            >
-                                <option value="">Selecciona una categoría</option>
-                                <option value="restaurante">Restaurante</option>
-                                <option value="mirador">Mirador</option>
-                                <option value="cocteleria">Coctelería</option>
-                                <option value="manualidades">Manualidades</option>
-                            </select>
-                        </div>
+                        <label className="edit-store-kg-label">Categoría</label>
+                        <input
+                            type="text"
+                            name="categoria"
+                            value={storeData.categoria}
+                            className="edit-store-kg-input"
+                            disabled
+                        />
                     </div>
 
                     <div className="edit-store-kg-input-group">
                         <label className="edit-store-kg-label">Ubicación Google Maps</label>
-                        <div 
-                            className="edit-store-kg-maps-button"
-                            onClick={() => {
-                                // Aquí irá la lógica para abrir el selector de ubicación
-                                console.log('Abrir selector de ubicación');
-                            }}
-                        >
-                            {storeData.ubicacion ? (
-                                <img 
-                                    src={storeData.ubicacion} 
-                                    alt="Ubicación seleccionada" 
-                                    className="edit-store-kg-maps-preview"
-                                />
-                            ) : (
-                                <div className="edit-store-kg-maps-placeholder">
-                                    <img 
-                                        src="/image/MapIcon.png" 
-                                        alt="Seleccionar ubicación" 
-                                        className="edit-store-kg-maps-icon"
-                                    />
-                                    <span>Seleccionar ubicación</span>
-                                </div>
-                            )}
-                        </div>
+                        <input
+                            type="text"
+                            name="ubicacion"
+                            value={storeData.ubicacion || ''}
+                            onChange={handleInputChange}
+                            className="edit-store-kg-input"
+                            placeholder="URL de Google Maps"
+                            disabled={isLoading}
+                        />
                     </div>
                 </div>
 
-                {/* Right Section */}
                 <div className="edit-store-kg-right">
                     <div className="edit-store-kg-upload-section">
                         <div className="edit-store-kg-upload-container">
-                            <h3 className="edit-store-kg-upload-title">Foto de local</h3>
+                            <h3 className="edit-store-kg-upload-title">Fotos del local</h3>
                             <label className="edit-store-kg-upload-box">
                                 <input
                                     type="file"
                                     accept="image/*"
                                     onChange={(e) => handleFileUpload('foto', e)}
                                     style={{ display: 'none' }}
+                                    disabled={isLoading}
                                 />
-                                {storeData.foto ? (
-                                    <img 
-                                        src={storeData.foto} 
-                                        alt="Vista previa" 
-                                        style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '8px' }}
-                                    />
-                                ) : (
-                                    <img src={UploadIcon} alt="Subir foto" className="edit-store-kg-upload-icon" />
-                                )}
+                                <img src={UploadIcon} alt="Subir foto" className="edit-store-kg-upload-icon" />
                             </label>
+                            <div className="edit-store-kg-photos-preview">
+                                {storeData.fotos.map((foto, index) => (
+                                    <img 
+                                        key={index}
+                                        src={foto} 
+                                        alt={`Foto ${index + 1}`}
+                                        className="edit-store-kg-photo-preview"
+                                    />
+                                ))}
+                            </div>
                         </div>
 
                         <div className="edit-store-kg-upload-container">
@@ -196,9 +251,10 @@ const EditStoreKG = () => {
                             <label className="edit-store-kg-upload-box">
                                 <input
                                     type="file"
-                                    accept=".pdf,image/*"
+                                    accept="image/*"
                                     onChange={(e) => handleFileUpload('menu', e)}
                                     style={{ display: 'none' }}
+                                    disabled={isLoading}
                                 />
                                 {storeData.menu ? (
                                     <img 
@@ -223,6 +279,7 @@ const EditStoreKG = () => {
                                 onChange={handleInputChange}
                                 placeholder="URL de WhatsApp"
                                 className="edit-store-kg-social-input"
+                                disabled={isLoading}
                             />
                         </div>
 
@@ -235,6 +292,7 @@ const EditStoreKG = () => {
                                 onChange={handleInputChange}
                                 placeholder="URL de TikTok"
                                 className="edit-store-kg-social-input"
+                                disabled={isLoading}
                             />
                         </div>
 
@@ -247,6 +305,7 @@ const EditStoreKG = () => {
                                 onChange={handleInputChange}
                                 placeholder="URL de Instagram"
                                 className="edit-store-kg-social-input"
+                                disabled={isLoading}
                             />
                         </div>
 
@@ -259,6 +318,7 @@ const EditStoreKG = () => {
                                 onChange={handleInputChange}
                                 placeholder="URL de Facebook"
                                 className="edit-store-kg-social-input"
+                                disabled={isLoading}
                             />
                         </div>
                     </div>

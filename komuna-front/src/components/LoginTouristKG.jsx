@@ -1,38 +1,59 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { vendedorService } from '../services/vendedorService';
 import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import LogoKomunaGO from '../image/Logo_KomunaGO.png';
 import BackButton from '../image/Back.png';
-import Foto1 from '../image/Foto1.jpeg';
-import Foto2 from '../image/Foto2.jpeg';
-import Foto3 from '../image/Foto3.jpeg';
-import Foto4 from '../image/Foto4.jpeg';
-import Foto5 from '../image/Foto5.jpeg';
-import Foto6 from '../image/Foto6.jpeg';
-import mandala from '../image/mandala.png';
 import '../styles/LoginTouristKG.css'; 
 
 export default function LoginTouristKG() {
     const navigate = useNavigate();
     const [activeFilter, setActiveFilter] = useState('todo');
+    const [stores, setStores] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState('');
 
-    const stores = [
-        { image: Foto1, name: "Tienda 1", categoriaLocal: 'mirador' },
-        { image: Foto2, name: "Tienda 2", categoriaLocal: 'cocteleria' },
-        { image: Foto3, name: "Tienda 3", categoriaLocal: 'manualidades' },
-        { image: Foto4, name: "Tienda 4", categoriaLocal: 'manualidades' },
-        { image: Foto5, name: "Tienda 5", categoriaLocal: 'manualidades' },
-        { image: Foto6, name: "Tienda 6", categoriaLocal: 'restaurante' }
-    ];
+    useEffect(() => {
+        const cargarTiendas = async () => {
+            try {
+                const vendedores = await vendedorService.obtenerTodos();
+                setStores(vendedores.map(vendedor => ({
+                    id: vendedor.id,
+                    name: vendedor.nombre_tienda,
+                    categoriaLocal: vendedor.tipo_negocio,
+                    image: vendedor.fotos?.[0] || null,
+                    menu: vendedor.menu,
+                    cupo_personas: vendedor.cupo_personas,
+                    horario: vendedor.horario,
+                    ubicacion: vendedor.ubicacion,
+                    redes_sociales: vendedor.redes_sociales
+                })));
+            } catch (err) {
+                setError('Error al cargar las tiendas');
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        cargarTiendas();
+
+        // Actualizar cada 30 segundos
+        const interval = setInterval(cargarTiendas, 30000);
+        return () => clearInterval(interval);
+    }, []);
 
     const handleFilterClick = (filter) => {
         setActiveFilter(filter);
     };
 
-    const handleNavigate = (image) => {
-        navigate('/profile-store', { state: { selectedImage: image } });
+    const handleNavigate = (store) => {
+        navigate('/profile-store', { 
+            state: { 
+                selectedStore: store
+            } 
+        });
     };
 
     const filteredStores = activeFilter === 'todo' 
@@ -65,6 +86,16 @@ export default function LoginTouristKG() {
         ]
     };
 
+    if (loading) {
+        return (
+            <div className='login-tourist-kg-container'>
+                <div className="login-tourist-kg-loading">
+                    <h2>Cargando tiendas...</h2>
+                </div>
+            </div>
+        );
+    }
+
     return (
         <div className='login-tourist-kg-container'>
             <div className="login-tourist-kg-header">
@@ -89,19 +120,25 @@ export default function LoginTouristKG() {
                 </svg>
             </div>
 
+            {error && <div className="login-tourist-kg-error">{error}</div>}
+
             <div className="login-tourist-kg-stores">
                 {filteredStores.length > 0 ? (
                     <Slider {...sliderSettings}>
-                        {filteredStores.map((store, index) => (
-                            <div key={index} className='tienda-card'>
+                        {filteredStores.map((store) => (
+                            <div key={store.id} className='tienda-card'>
                                 <div className='container-foto-local'>
-                                    <img src={store.image} alt={`Foto ${store.name}`}/>
+                                    {store.image ? (
+                                        <img src={store.image} alt={`Foto ${store.name}`}/>
+                                    ) : (
+                                        <div className="no-image">Sin imagen</div>
+                                    )}
                                 </div>
                                 <div className='container-nombre-local'>
                                     <h3>{store.name}</h3>
                                 </div>
                                 <div className='container-informacion-local'>
-                                    <button onClick={() => handleNavigate(store.image)}>Ver más</button>
+                                    <button onClick={() => handleNavigate(store)}>Ver más</button>
                                 </div>
                             </div>
                         ))}
