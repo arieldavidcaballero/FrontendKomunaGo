@@ -14,10 +14,18 @@ export default function Home() {
             </div>
 
             <div className="containerTwoHome">
-                <Link to="/login-store"> <img className="buttonImg" src={BTienda} alt="button 1" /> </Link>
-                <Link to="/turist-store"> <img className="buttonImg" src={BTurista} alt="button 2" /> </Link>
+                <Link to="register-store"> 
+                    <div className="containerLoginStoresHome">
+                        <img className="buttonImg" src={BTienda} alt="button 1" />
+                    </div> 
+                </Link>
+                
+                <Link to="/turist-store">
+                    <div className="containerLoginTueistHome">
+                        <img className="buttonImg" src={BTurista} alt="button 2" /> 
+                    </div>
+                </Link>
             </div>
-
         </div>
     )
 }

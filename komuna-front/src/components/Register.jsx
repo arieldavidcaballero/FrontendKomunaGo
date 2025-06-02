@@ -4,20 +4,17 @@ import '../styles/RegisterLocalKG.css';
 import LogoKomunaGO from '../image/Logo_KomunaGO.png';
 import LogoTienda from '../image/Logo-Tienda.jpg';
 import Atras from '../image/Atras.png';
+import entrar from '../image/BEnter.jpg';
 
 const Register = () => {
-    const [formData, setFormData] = useState({
-        nombreLocal: '',
-        correoElectronico: '',
-        categoriaLocal: ''
-    });
+    const [codigoTienda, setCodigoTienda] = useState('');
 
     const handleInputChange = (e) => {
-        const { name, value } = e.target;
-        setFormData(prevState => ({
-            ...prevState,
-            [name]: value
-        }));
+        setCodigoTienda(e.target.value);
+    };
+
+    const forgotCodeMessage = () => {
+        alert("Revisa tu correo para restablecer tu código.");
     };
 
     const handleSubmit = (e) => {
@@ -38,19 +35,15 @@ const Register = () => {
             <div className="register-kg-chart">
                 {/* Contenedor Uno */}
                 <div className="register-kg-back-container">
-                    <Link to="/login-store">
+                    <Link to="/">
                         <img className="register-kg-back-icon" src={Atras} alt="button Back" />
                     </Link>
                 </div>
 
                 {/* Contenedor Dos */}
                 <div className="register-kg-logo-container">
-                    <img className="register-kg-logo" src={LogoKomunaGO} alt="Logo KomunaGO" />
                     <img className="register-kg-store-logo" src={LogoTienda} alt="Logo Tienda" />
                 </div>
-
-                {/* Horizontal Dashed Line */}
-                <div className="register-kg-divider"></div>
 
                 {/* Contenedor Tres */}
                 <form onSubmit={handleSubmit} className="register-kg-form">
@@ -59,58 +52,27 @@ const Register = () => {
                             className="register-kg-input"
                             type="text"
                             required
-                            name="nombreLocal"
-                            placeholder="NombreLocal"
-                            value={formData.nombreLocal}
+                            name="codigoTienda"
+                            placeholder="Código Tienda"
+                            value={codigoTienda}
                             onChange={handleInputChange}
                         />
-                    </div>
-                    <div className="register-kg-input-group">
-                        <input
-                            className="register-kg-input"
-                            type="email"
-                            required
-                            name="correoElectronico"
-                            placeholder="CorreoElectronico"
-                            value={formData.correoElectronico}
-                            onChange={handleInputChange}
-                        />
-                    </div>
-                    <div className="register-kg-input-group">
-                        <input
-                            className="register-kg-input"
-                            type="text"
-                            required
-                            name="categoriaLocal"
-                            placeholder="CategoriaLocal"
-                            value={formData.categoriaLocal}
-                            onChange={handleInputChange}
-                        />
-                    </div>
 
-                    {/* Contenedor Cuatro */}
-                    <div className="register-kg-submit-container">
-                        <button type="submit" className="register-kg-submit-button">
-                            REGISTRAR LOCAL
-                        </button>
+                        <Link to="/edit-store">
+                            <img className="register-kg-enter-button" src={entrar} alt="Botón Enter"/>
+                        </Link>
                     </div>
                 </form>
 
                 <div className="register-kg-footer">
-                    {/* Registrar Tienda Link */}
-                    <div className="register-kg-store-link">
-                        <Link to="/register-store">
-                            Registrar Tienda
-                        </Link>
-                    </div>
-
-                    {/* Contenedor Cinco */}
-                    <div className="register-kg-help-container">
-                        <button onClick={helpMessage} className="register-kg-help-button">
-                            <h3>Ayuda</h3>
-                        </button>
-                    </div>
+                    <Link to="/login-store" className="register-kg-link">Registrar Tienda</Link>
+                    <button onClick={forgotCodeMessage} className="register-kg-link">Olvidé Código</button>
                 </div>
+
+                {/* Contenedor Cinco */}
+                    <div className="register-kg-help-container">
+                        <img className="login-store-kg-logo" src={LogoKomunaGO} alt="Logo KomunaGO"/>
+                    </div>
             </div>
         </div>
     );

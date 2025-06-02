@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Slider from 'react-slick';
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import LogoKomunaGO from '../image/Logo_KomunaGO.png';
 import BackButton from '../image/Back.png';
-import B1Image from '../image/B1.jpg';
-import B2Image from '../image/B2.jpg';
-import B3Image from '../image/B3.jpg';
-import B4Image from '../image/B4.jpg';
-import B5Image from '../image/B5.jpg';
-import B6Image from '../image/B6.jpg';
+import Foto1 from '../image/Foto1.jpeg';
+import Foto2 from '../image/Foto2.jpeg';
+import Foto3 from '../image/Foto3.jpeg';
+import Foto4 from '../image/Foto4.jpeg';
+import Foto5 from '../image/Foto5.jpeg';
+import Foto6 from '../image/Foto6.jpeg';
 import '../styles/LoginTouristKG.css'; 
 
 export default function LoginTouristKG() {
@@ -21,6 +24,41 @@ export default function LoginTouristKG() {
     const handleNavigate = (image) => {
         navigate('/profile-store', { state: { selectedImage: image } });
     };
+
+    const sliderSettings = {
+        dots: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 4,
+        slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 3000,
+        responsive: [
+            {
+                breakpoint: 1024,
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 1,
+                }
+            },
+            {
+                breakpoint: 600,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1,
+                }
+            }
+        ]
+    };
+
+    const stores = [
+        { image: Foto1, name: "Tienda 1" },
+        { image: Foto2, name: "Tienda 2" },
+        { image: Foto3, name: "Tienda 3" },
+        { image: Foto4, name: "Tienda 4" },
+        { image: Foto5, name: "Tienda 5" },
+        { image: Foto6, name: "Tienda 6" }
+    ];
 
     return (
         <div className='login-tourist-kg-container'>
@@ -47,15 +85,21 @@ export default function LoginTouristKG() {
             </div>
 
             <div className="login-tourist-kg-stores">
-                {[B1Image, B2Image, B3Image, B4Image, B5Image, B6Image].map((image, index) => (
-                    <button 
-                        key={index}
-                        className="login-tourist-kg-store-button"
-                        onClick={() => handleNavigate(image)}
-                    >
-                        <img className="login-tourist-kg-store-image" src={image} alt={`Tienda ${index + 1}`} />
-                    </button>
-                ))}
+                <Slider {...sliderSettings}>
+                    {stores.map((store, index) => (
+                        <div key={index} className='tienda-card'>
+                            <div className='container-foto-local'>
+                                <img src={store.image} alt={`Foto ${store.name}`}/>
+                            </div>
+                            <div className='container-nombre-local'>
+                                <h3>{store.name}</h3>
+                            </div>
+                            <div className='container-informacion-local'>
+                                <button onClick={() => handleNavigate(store.image)}>Ver más</button>
+                            </div>
+                        </div>
+                    ))}
+                </Slider>
             </div>
 
             <div className="login-tourist-kg-filters">

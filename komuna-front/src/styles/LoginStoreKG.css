@@ -30,7 +30,6 @@
 }
 
 .login-store-kg-chart {
-    
     margin: 20px;
     background: rgb(0, 0, 0);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
@@ -63,9 +62,8 @@
 }
 
 .login-store-kg-back-icon {
-    width: 30px;
-    height: 30px;
-    object-fit: contain;
+    width: 40px;
+    height: auto ;
 }
 
 /* Contenedor de logos */
@@ -176,9 +174,9 @@ select.login-store-kg-input {
 .login-store-kg-help-button {
     background: none;
     border: none;
-    color: #4a90e2;
+    color: white;
     cursor: pointer;
-    padding: 10px;
+    padding: 0;
 }
 
 .login-store-kg-help-button h3 {

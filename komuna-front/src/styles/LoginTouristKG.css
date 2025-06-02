@@ -61,38 +61,125 @@
     fill: none;
 }
 
-.login-tourist-kg-stores { /* Container Tres*/
-    width: 100%;
-    height: 25%;
+.login-tourist-kg-stores {
+    width: 90%;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+/* Estilos para las flechas del slider */
+.login-tourist-kg-stores .slick-prev,
+.login-tourist-kg-stores .slick-next {
+    width: 40px;
+    height: 40px;
+    z-index: 1;
+}
+
+.login-tourist-kg-stores .slick-prev {
+    left: -50px;
+}
+
+.login-tourist-kg-stores .slick-next {
+    right: -50px;
+}
+
+.login-tourist-kg-stores .slick-prev:before,
+.login-tourist-kg-stores .slick-next:before {
+    font-size: 40px;
+    color: white;
+}
+
+/* Estilos para los dots */
+.login-tourist-kg-stores .slick-dots {
+    bottom: -40px;
+}
+
+.login-tourist-kg-stores .slick-dots li button:before {
+    color: white;
+    font-size: 12px;
+}
+
+.login-tourist-kg-stores .slick-dots li.slick-active button:before {
+    color: #C157FF;
+}
+
+.tienda-card {
+    border: 10px dashed white;
+    border-radius: 15px;
+    padding: 1rem;
     display: flex;
-    justify-content: center;
-    flex-direction: row;
-    gap: 10px;
-    margin-top: 20px;
+    flex-direction: column;
+    gap: 1rem;
+    transition: all 0.3s ease;
+    margin: 0 30px;
+    max-width: 300px;
+    margin: 20px auto;
 }
 
-.login-tourist-kg-store-button {
-    border: none;
-    width: 200px; 
-    height: 50vh; 
+@keyframes borderDance {
+    0% {
+        border-style: dashed;
+    }
+    50% {
+        border-style: dotted;
+    }
+    100% {
+        border-style: dashed;
+    }
 }
 
-.login-tourist-kg-store-button { /* Efecto para imágenes y botones */
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+.tienda-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2);
 }
 
-.login-tourist-kg-store-button:hover { /* Efecto al pasar el cursor */
-    transform: scale(1.1); /* Aumenta el tamaño */
+.container-foto-local {
+    width: 100%;
+    height: 150px;
+    overflow: hidden;
+    border-radius: 10px;
 }
 
-.login-tourist-kg-store-button:active { /* Efecto de clic */
-    transform: scale(0.95); /* Efecto de presión */
-}
-
-.login-tourist-kg-store-image {
+.container-foto-local img {
     width: 100%;
     height: 100%;
-    object-fit: cover; 
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.container-foto-local img:hover {
+    transform: scale(1.1);
+}
+
+.container-nombre-local {
+    text-align: center;
+}
+
+.container-nombre-local h3 {
+    color: white;
+    font-size: 1.2rem;
+    margin: 10px 0;
+}
+
+.container-informacion-local {
+    display: flex;
+    justify-content: center;
+}
+
+.container-informacion-local button {
+    background: none;
+    border: 2px solid white;
+    color: white;
+    padding: 0.3rem 1rem;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.container-informacion-local button:hover {
+    background: white;
+    color: black;
 }
 
 .login-tourist-kg-filters { /* Container Cuatro*/

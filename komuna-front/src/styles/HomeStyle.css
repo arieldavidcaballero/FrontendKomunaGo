@@ -36,14 +36,47 @@ html, body {
 
 .buttonImg {
     width: 150px;
+}
+
+.containerLoginStoresHome {
+    width: 12vw;
+    height: 25vh;
+    background-color: rgb(0, 0, 0);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 15px;
+    border: 10px dashed white ;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.buttonImg:hover {
+.containerLoginStoresHome:hover {
     transform: scale(1.1);
     box-shadow: 0 0 15px rgba(255, 255, 255, 0.7);
 }
 
-.buttonImg:active {
+.containerLoginStoresHome:active {
+    transform: scale(0.95);
+}
+
+.containerLoginTueistHome {
+    width: 12vw;
+    height: 25vh;
+    background-color: rgb(0, 0, 0);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+    border: 10px dashed white ;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.containerLoginTueistHome:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.7);
+}
+
+.containerLoginTueistHome:active {
     transform: scale(0.95);
 }
