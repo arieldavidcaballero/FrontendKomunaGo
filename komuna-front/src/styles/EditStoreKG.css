@@ -10,139 +10,369 @@ body { /* Contenedor General */
     font-family: Arial, sans-serif;
 }
 
-.edit-store-kg-container { /* Contenedor General */
+.edit-store-kg-container {
     width: 100%;
-    height: 100vh;
-    background-image: url("../image/Fondo_Inicios2.png");
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
+    min-height: 100vh;
+    background-color: #000;
+    padding: 20px;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    gap: 30px;
+}
+
+/* Header Section */
+.edit-store-kg-header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
     align-items: center;
-    flex-direction: column;
+    padding: 10px 0;
 }
 
-.edit-store-kg-box-left,
-.edit-store-kg-box-right { /* Columnas Izquierda y Derecha */
-    width: 50%;
-    padding: 2rem;
-    box-sizing: border-box;
+.edit-store-kg-logo {
+    width: 300px;
+    height: auto;
+}
+
+.edit-store-kg-buttons {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.edit-store-kg-back {
+    background-color: #FFD93D;
+    color: black;
+    padding: 10px 30px;
+    border-radius: 25px;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.edit-store-kg-register {
+    background-color: #0066FF;
+    color: white;
+    padding: 10px 30px;
+    border-radius: 25px;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.edit-store-kg-back:hover,
+.edit-store-kg-register:hover {
+    transform: scale(1.05);
+}
+
+/* Main Content */
+.edit-store-kg-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    padding: 20px;
+}
+
+/* Left Section */
+.edit-store-kg-left {
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 20px;
 }
 
-.edit-store-kg-logo { /* Contenedor Logo */
-    width: 500px;
+.edit-store-kg-input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
-.edit-store-kg-title {
-    font-size: 1.2rem;
-    margin: 0 0 0.5rem 0;
+.edit-store-kg-label {
     color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 5px;
 }
 
 .edit-store-kg-input {
-    width: 100%;
-    padding: 10px 0;
     background: transparent;
     border: none;
-    border-bottom: 1px solid white;
+    border-bottom: 2px solid white;
     color: white;
-    font-size: 1rem;
+    font-size: 1.1rem;
+    padding: 5px 0;
+    width: 100%;
     outline: none;
-    border-radius: 0;
 }
 
 .edit-store-kg-input::placeholder {
-    color: rgba(255, 255, 255, 0.5);
+    color: rgba(255, 255, 255, 0.6);
+    font-style: italic;
 }
 
-.edit-store-kg-social-input {
-    width: 100%;
-    padding: 10px 15px;
-    border-radius: 30px;
-    background-color: black;
+.edit-store-kg-select {
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid white;
     color: white;
-    border: 1px solid white;
-    font-size: 1rem;
+    padding: 5px 0;
+    width: 100%;
+    font-size: 1.1rem;
+    cursor: pointer;
+    outline: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
 }
 
-.edit-store-kg-map-link {
+.edit-store-kg-select option {
+    background: black;
     color: white;
-    text-decoration: underline;
+    padding: 10px;
 }
 
-.edit-store-kg-back-button {
-    width: 130px;
-    cursor: pointer;
+/* Eliminar la flecha por defecto del select en IE */
+.edit-store-kg-select::-ms-expand {
+    display: none;
 }
 
-.edit-store-kg-photo { /* Imagen del Local */
-    width: 100%;
-    max-width: 250px;
-    border-radius: 20px;
+/* Agregar una flecha personalizada */
+.edit-store-kg-select-container {
+    position: relative;
 }
 
-.edit-store-kg-menu { /* Imagen del Menú */
-    width: 100%;
-    max-width: 200px;
-    border-radius: 20px;
-    cursor: pointer;
+.edit-store-kg-select-container::after {
+    content: '▼';
+    color: white;
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    font-size: 0.8rem;
 }
 
-.edit-store-kg-social-container { /* Redes Sociales */
+/* Right Section */
+.edit-store-kg-right {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 30px;
 }
 
-.edit-store-kg-social-item {
+.edit-store-kg-upload-section {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.edit-store-kg-upload-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.edit-store-kg-upload-title {
+    color: white;
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+.edit-store-kg-upload-box {
+    width: 150px;
+    height: 150px;
+    border: 2px dashed white;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.edit-store-kg-upload-box:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.edit-store-kg-upload-icon {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+}
+
+/* Social Media Section */
+.edit-store-kg-social {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.edit-store-kg-social-input-group {
     display: flex;
     align-items: center;
-    gap: 1rem;
+    gap: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 10px;
+    border-radius: 25px;
 }
 
-.edit-store-kg-social-item img {
+.edit-store-kg-social-icon {
     width: 30px;
     height: 30px;
 }
 
-.edit-store-kg-social-item input {
-    flex-grow: 1;
+.edit-store-kg-social-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: white;
+    padding: 5px;
+    outline: none;
+    font-size: 1rem;
 }
 
-.edit-store-kg-photo-menu { /* Contenedor Foto y Menú Lado a Lado */
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: flex-start;
-    gap: 4rem;
-    margin-top: 2rem;
-    margin-bottom: 2rem;
+.edit-store-kg-social-input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
 }
 
-.edit-store-kg-photo-container,
-.edit-store-kg-menu-container { /* Estilo de Foto y Menú Individual */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
-    text-align: center;
-}
+@media (max-width: 768px) {
+    .edit-store-kg-content {
+        grid-template-columns: 1fr;
+    }
 
-@media (max-width: 768px) { /* Responsive */
-    .edit-store-kg-container {
+    .edit-store-kg-buttons {
         flex-direction: column;
     }
 
-    .edit-store-kg-box-left,
-    .edit-store-kg-box-right {
-        width: 100%;
+    .edit-store-kg-upload-section {
+        flex-direction: column;
+        align-items: center;
     }
+}
 
-    .edit-store-kg-photo,
-    .edit-store-kg-menu {
-        max-width: 100%;
-    }
+/* Loading and Error States */
+.edit-store-kg-register:disabled,
+.edit-store-kg-back:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+.edit-store-kg-error {
+    background-color: rgba(255, 0, 0, 0.1);
+    border: 1px solid #ff0000;
+    color: #ff0000;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin: 10px 0;
+    text-align: center;
+    width: 100%;
+    max-width: 600px;
+    align-self: center;
+}
+
+/* Loading Animation */
+@keyframes loading {
+    0% { opacity: 1; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1; }
+}
+
+.edit-store-kg-register:disabled {
+    animation: loading 1.5s infinite;
+}
+
+/* Input Validation */
+.edit-store-kg-input:invalid,
+.edit-store-kg-social-input:invalid {
+    border-color: #ff0000;
+}
+
+.edit-store-kg-input:focus:invalid,
+.edit-store-kg-social-input:focus:invalid {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(255, 0, 0, 0.2);
+}
+
+/* Success State */
+.edit-store-kg-success {
+    background-color: rgba(0, 255, 0, 0.1);
+    border: 1px solid #00ff00;
+    color: #00ff00;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin: 10px 0;
+    text-align: center;
+    width: 100%;
+    max-width: 600px;
+    align-self: center;
+}
+
+/* Google Maps Button Styles */
+.edit-store-kg-maps-button {
+    width: 100%;
+    height: 150px;
+    border: 2px solid white;
+    border-radius: 10px;
+    cursor: pointer;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.edit-store-kg-maps-button:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: scale(1.02);
+}
+
+.edit-store-kg-maps-preview {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.edit-store-kg-maps-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    color: white;
+}
+
+.edit-store-kg-maps-icon {
+    width: 40px;
+    height: 40px;
+    opacity: 0.8;
+}
+
+.edit-store-kg-maps-placeholder span {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* Divider Line */
+.edit-store-kg-divider {
+    width: 100%;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.edit-store-kg-path {
+    width: 100%;
+    height: 100%;
+}
+
+.edit-store-kg-path path {
+    stroke: white;
+    stroke-width: 10;
+    stroke-dasharray: 10,15;
+    fill: none;
 }
