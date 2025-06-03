@@ -74,8 +74,13 @@ export const vendedorService = {
         }
     },
 
-    // Cerrar sesión
-    logout: () => {
-        localStorage.removeItem('token');
+    // Eliminar tienda
+    eliminarTienda: async (id) => {
+        try {
+            const response = await api.delete(`/vendedores/${id}`);
+            return response.data;
+        } catch (error) {
+            throw error.response?.data || { error: 'Error al eliminar la tienda' };
+        }
     }
 }; 

@@ -31,10 +31,12 @@
 .register-kg-chart {
     margin: 20px;
     background: rgb(0, 0, 0);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
     width: 100%;
     max-width: 500px;
     padding: 2rem;
     position: relative;
+    animation: glowBorder 2s infinite ease-in-out;
     border: 10px dashed white;
     border-radius: 5%;
 }

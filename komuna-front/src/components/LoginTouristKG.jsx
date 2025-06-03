@@ -15,33 +15,46 @@ export default function LoginTouristKG() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
 
+    const cargarTiendas = async () => {
+        try {
+            const vendedores = await vendedorService.obtenerTodos();
+            setStores(vendedores.map(vendedor => ({
+                id: vendedor.id,
+                name: vendedor.nombre_tienda,
+                categoriaLocal: vendedor.tipo_negocio,
+                image: vendedor.fotos?.[0] || null,
+                menu: vendedor.menu,
+                cupo_personas: vendedor.cupo_personas,
+                horario: vendedor.horario,
+                ubicacion: vendedor.ubicacion,
+                redes_sociales: vendedor.redes_sociales
+            })));
+        } catch (err) {
+            setError('Error al cargar las tiendas');
+        } finally {
+            setLoading(false);
+        }
+    };
+
     useEffect(() => {
-        const cargarTiendas = async () => {
-            try {
-                const vendedores = await vendedorService.obtenerTodos();
-                setStores(vendedores.map(vendedor => ({
-                    id: vendedor.id,
-                    name: vendedor.nombre_tienda,
-                    categoriaLocal: vendedor.tipo_negocio,
-                    image: vendedor.fotos?.[0] || null,
-                    menu: vendedor.menu,
-                    cupo_personas: vendedor.cupo_personas,
-                    horario: vendedor.horario,
-                    ubicacion: vendedor.ubicacion,
-                    redes_sociales: vendedor.redes_sociales
-                })));
-            } catch (err) {
-                setError('Error al cargar las tiendas');
-            } finally {
-                setLoading(false);
-            }
+        cargarTiendas();
+
+        // Escuchar el evento de eliminación de tienda
+        const handleStoreDeleted = (event) => {
+            const deletedStoreId = event.detail.storeId;
+            setStores(prevStores => prevStores.filter(store => store.id !== deletedStoreId));
         };
 
-        cargarTiendas();
+        window.addEventListener('storeDeleted', handleStoreDeleted);
 
         // Actualizar cada 30 segundos
         const interval = setInterval(cargarTiendas, 30000);
-        return () => clearInterval(interval);
+
+        // Limpiar los event listeners cuando el componente se desmonte
+        return () => {
+            clearInterval(interval);
+            window.removeEventListener('storeDeleted', handleStoreDeleted);
+        };
     }, []);
 
     const handleFilterClick = (filter) => {

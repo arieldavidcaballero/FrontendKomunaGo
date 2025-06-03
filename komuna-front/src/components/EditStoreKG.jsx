@@ -69,13 +69,32 @@ const EditStoreKG = () => {
 
     const handleFileUpload = async (type, e) => {
         const file = e.target.files[0];
-        if (file) {
-            try {
-                const base64 = await convertToBase64(file);
+        if (!file) return;
+
+        // Validar tipo de archivo
+        if (type === 'menu' && file.type !== 'application/pdf') {
+            setError('El menú debe ser un archivo PDF');
+            return;
+        }
+
+        if (type === 'foto' && !file.type.startsWith('image/')) {
+            setError('Por favor seleccione un archivo de imagen válido');
+            return;
+        }
+
+        try {
+            const reader = new FileReader();
+            reader.onload = async (event) => {
+                const base64 = event.target.result;
+                
                 if (type === 'foto') {
+                    // Si ya hay fotos, reemplazar la primera (para LoginTouristKG)
+                    // o agregar si no hay ninguna
                     setStoreData(prevState => ({
                         ...prevState,
-                        fotos: [...prevState.fotos, base64]
+                        fotos: prevState.fotos.length > 0 
+                            ? [base64, ...prevState.fotos.slice(1)]
+                            : [base64]
                     }));
                 } else {
                     setStoreData(prevState => ({
@@ -83,19 +102,41 @@ const EditStoreKG = () => {
                         [type]: base64
                     }));
                 }
-            } catch (err) {
-                setError('Error al procesar la imagen');
-            }
+            };
+            reader.onerror = () => {
+                setError('Error al procesar el archivo');
+            };
+            reader.readAsDataURL(file);
+        } catch (err) {
+            console.error('Error al procesar el archivo:', err);
+            setError('Error al procesar el archivo');
         }
     };
 
-    const convertToBase64 = (file) => {
-        return new Promise((resolve, reject) => {
-            const reader = new FileReader();
-            reader.readAsDataURL(file);
-            reader.onload = () => resolve(reader.result);
-            reader.onerror = (error) => reject(error);
-        });
+    // Función para previsualizar imágenes
+    const renderImagePreview = (imageData) => {
+        if (!imageData) return null;
+        return (
+            <img 
+                src={imageData} 
+                alt="Preview" 
+                style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
+            />
+        );
+    };
+
+    // Función para previsualizar PDF
+    const renderPDFPreview = (pdfData) => {
+        if (!pdfData) return null;
+        return (
+            <embed
+                src={pdfData}
+                type="application/pdf"
+                width="100%"
+                height="100%"
+                style={{ borderRadius: '8px' }}
+            />
+        );
     };
 
     const handleSubmit = async (e) => {
@@ -111,7 +152,7 @@ const EditStoreKG = () => {
         }
 
         try {
-            await vendedorService.actualizarPerfil(vendedorId, {
+            const response = await vendedorService.actualizarPerfil(vendedorId, {
                 cupo_personas: parseInt(storeData.cupoPersonas),
                 horario: storeData.horarioLaboral,
                 ubicacion: storeData.ubicacion,
@@ -125,10 +166,46 @@ const EditStoreKG = () => {
                 }
             });
 
+            // Actualizar el estado con los datos devueltos por el servidor
+            setStoreData(prevState => ({
+                ...prevState,
+                menu: response.menu,
+                fotos: response.fotos
+            }));
+
             alert('Perfil actualizado exitosamente');
         } catch (error) {
             setError('Error al actualizar el perfil. Por favor intente nuevamente.');
         } finally {
+            setIsLoading(false);
+        }
+    };
+
+    const handleDeleteStore = async () => {
+        const vendedorId = localStorage.getItem('vendedorId');
+        if (!vendedorId) {
+            setError('Error de autenticación');
+            return;
+        }
+
+        const confirmDelete = window.confirm('¿Estás seguro que deseas eliminar tu tienda? Esta acción no se puede deshacer.');
+        if (!confirmDelete) return;
+
+        setIsLoading(true);
+        setError('');
+
+        try {
+            await vendedorService.eliminarTienda(vendedorId);
+            
+            // Emitir un evento personalizado para notificar que se eliminó una tienda
+            const event = new CustomEvent('storeDeleted', { detail: { storeId: vendedorId } });
+            window.dispatchEvent(event);
+            
+            localStorage.removeItem('vendedorId');
+            alert('Tienda eliminada exitosamente');
+            navigate('/');
+        } catch (error) {
+            setError('Error al eliminar la tienda. Por favor intente nuevamente.');
             setIsLoading(false);
         }
     };
@@ -151,6 +228,13 @@ const EditStoreKG = () => {
                         disabled={isLoading}
                     >
                         {isLoading ? 'Guardando...' : 'Guardar Cambios'}
+                    </button>
+                    <button 
+                        className="edit-store-kg-delete"
+                        onClick={handleDeleteStore}
+                        disabled={isLoading}
+                    >
+                        Eliminar Tienda
                     </button>
                 </div>
             </div>
@@ -232,36 +316,32 @@ const EditStoreKG = () => {
                                     style={{ display: 'none' }}
                                     disabled={isLoading}
                                 />
-                                <img src={UploadIcon} alt="Subir foto" className="edit-store-kg-upload-icon" />
+                                {storeData.fotos.length > 0 ? (
+                                    <div className="edit-store-kg-photos-grid">
+                                        {storeData.fotos.map((foto, index) => (
+                                            <div key={index} className="edit-store-kg-photo-container">
+                                                {renderImagePreview(foto)}
+                                            </div>
+                                        ))}
+                                    </div>
+                                ) : (
+                                    <img src={UploadIcon} alt="Subir foto" className="edit-store-kg-upload-icon" />
+                                )}
                             </label>
-                            <div className="edit-store-kg-photos-preview">
-                                {storeData.fotos.map((foto, index) => (
-                                    <img 
-                                        key={index}
-                                        src={foto} 
-                                        alt={`Foto ${index + 1}`}
-                                        className="edit-store-kg-photo-preview"
-                                    />
-                                ))}
-                            </div>
                         </div>
 
                         <div className="edit-store-kg-upload-container">
-                            <h3 className="edit-store-kg-upload-title">Menú</h3>
+                            <h3 className="edit-store-kg-upload-title">Menú (PDF)</h3>
                             <label className="edit-store-kg-upload-box">
                                 <input
                                     type="file"
-                                    accept="image/*"
+                                    accept="application/pdf"
                                     onChange={(e) => handleFileUpload('menu', e)}
                                     style={{ display: 'none' }}
                                     disabled={isLoading}
                                 />
                                 {storeData.menu ? (
-                                    <img 
-                                        src={storeData.menu} 
-                                        alt="Vista previa menú" 
-                                        style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '8px' }}
-                                    />
+                                    renderPDFPreview(storeData.menu)
                                 ) : (
                                     <img src={UploadIcon} alt="Subir menú" className="edit-store-kg-upload-icon" />
                                 )}
