@@ -46,77 +46,77 @@ export default function ProfilesKG() {
                 <div className="profiles-kg-chart">
                     <div className="profiles-kg-views">
                         <h2>{store.name}</h2>
-                        <svg className="profiles-kg-path" viewBox="0 0 1200 120" preserveAspectRatio="none">
-                            <path 
-                                d="M0,60 L1200,60" 
-                                stroke="#FF0000" 
-                                strokeWidth="6" 
-                                strokeDasharray="10,15" 
-                                fill="none" 
-                            />
-                        </svg>
-                    </div>
-                    <div className="profiles-kg-info">
-                        <div className="profiles-kg-info-title">
-                            <h2>Perfil de Local</h2>
-                        </div>
-                        <div className="profiles-kg-info-menu">
-                            <h2>Menú</h2>
-                        </div>
-                        <div className="profiles-kg-info-location">
-                            <h2>Ubicación</h2>
-                        </div>
                     </div>
                     <div className="profiles-kg-images">
-                        <div className="profiles-kg-image-container" onClick={() => store.image && handleImageClick(store.image)}>
+                        <div className="profiles-kg-image-container">
+                            <div className="profiles-kg-image-title">Foto Local</div>
                             {store.image ? (
-                                <img className="profiles-kg-photo" src={store.image} alt="Foto del Local" />
+                                <img 
+                                    className="profiles-kg-photo" 
+                                    src={store.image} 
+                                    alt="Foto del Local"
+                                    onClick={() => handleImageClick(store.image)}
+                                />
                             ) : (
                                 <div className="profiles-kg-no-photo">Sin foto</div>
                             )}
                         </div>
-                        <div className="profiles-kg-image-container" onClick={() => store.menu && handleImageClick(store.menu, true)}>
+                        <div className="profiles-kg-image-container">
+                            <div className="profiles-kg-image-title">Menú</div>
                             {store.menu ? (
-                                <img className="profiles-kg-menu" src={store.menu} alt="Menu del Local" />
+                                <img 
+                                    className="profiles-kg-menu" 
+                                    src={store.menu} 
+                                    alt="Menú del Local"
+                                    onClick={() => handleImageClick(store.menu, true)}
+                                />
                             ) : (
                                 <div className="profiles-kg-no-menu">Sin menú</div>
                             )}
                         </div>
                         <div className="profiles-kg-image-container">
+                            <div className="profiles-kg-image-title">Ubicación</div>
                             {store.ubicacion ? (
                                 <a 
                                     href={store.ubicacion}
                                     target="_blank" 
                                     rel="noopener noreferrer"
                                 >
-                                    <img className="profiles-kg-maps" src={GoogleMapsIcon} alt="Ver ubicación en Google Maps" />
+                                    <img 
+                                        className="profiles-kg-maps" 
+                                        src={GoogleMapsIcon} 
+                                        alt="Ver ubicación en Google Maps" 
+                                    />
                                 </a>
                             ) : (
                                 <div className="profiles-kg-no-location">Sin ubicación</div>
                             )}
                         </div>
                     </div>
-                    <div className="profiles-kg-divider">
-                        <svg className="profiles-kg-path-two" viewBox="0 0 1200 120" preserveAspectRatio="none">
-                            <path 
-                                d="M0,60 L1200,60" 
-                                stroke="#FF0000" 
-                                strokeWidth="6" 
-                                strokeDasharray="10,15" 
-                                fill="none" 
-                            />
-                        </svg>
-                    </div>
                     <div className="profiles-kg-details">
-                        <div className="profiles-kg-labels">
-                            <h2>Cupo de Personas</h2>
-                            <h2>Horario Laboral</h2>
-                            <h2>Categoría</h2>
+                        <div className="profiles-kg-info-row">
+                            <div className="profiles-kg-labels">
+                                <h2>Cupo de Personas:</h2>
+                            </div>
+                            <div className="profiles-kg-values">
+                                <h2>{store.cupo_personas || 'No especificado'}</h2>
+                            </div>
                         </div>
-                        <div className="profiles-kg-values">
-                            <h2>{store.cupo_personas || 'No especificado'}</h2>
-                            <h2>{store.horario || 'No especificado'}</h2>
-                            <h2>{store.categoriaLocal}</h2>
+                        <div className="profiles-kg-info-row">
+                            <div className="profiles-kg-labels">
+                                <h2>Horario Laboral:</h2>
+                            </div>
+                            <div className="profiles-kg-values">
+                                <h2>{store.horario || 'No especificado'}</h2>
+                            </div>
+                        </div>
+                        <div className="profiles-kg-info-row">
+                            <div className="profiles-kg-labels">
+                                <h2>Categoría:</h2>
+                            </div>
+                            <div className="profiles-kg-values">
+                                <h2>{store.categoriaLocal}</h2>
+                            </div>
                         </div>
                         <div className="profiles-kg-social">
                             {store.redes_sociales?.whatsapp && (

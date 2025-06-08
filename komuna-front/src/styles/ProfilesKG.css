@@ -102,23 +102,23 @@
 
 .profiles-kg-image-container {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100%;
-    width: 100%;
+    gap: 15px;
     padding: 10px;
 }
 
-.profiles-kg-photo,
-.profiles-kg-menu {
-    width: 200px;
-    height: 180px;
-    object-fit: cover;
-    border-radius: 15px;
-    border: 4px dashed white;
-    transition: transform 0.3s ease;
+.profiles-kg-image-title {
+    color: white;
+    font-size: 1.2em;
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 5px;
 }
 
+.profiles-kg-photo,
+.profiles-kg-menu,
 .profiles-kg-maps {
     width: 200px;
     height: 180px;
@@ -274,87 +274,6 @@
     background: rgba(255, 255, 255, 0.5);
 }
 
-@media (max-width: 768px) {
-    .profiles-kg-container {
-        padding: 1% 2%;
-    }
-
-    .profiles-kg-images {
-        grid-template-columns: repeat(3, 1fr);
-        height: auto;
-    }
-    
-    .profiles-kg-info {
-        grid-template-columns: repeat(3, 1fr);
-    }
-    
-    .profiles-kg-details {
-        grid-template-columns: repeat(3, 1fr);
-    }
-    
-    .profiles-kg-photo,
-    .profiles-kg-menu,
-    .profiles-kg-maps {
-        max-height: 150px;
-    }
-    
-    .profiles-kg-logo {
-        width: 40%;
-    }
-
-    .profiles-kg-views h2 {
-        font-size: 1.8em;
-    }
-
-    .profiles-kg-info h2 {
-        font-size: 1em;
-    }
-
-    .profiles-kg-social img {
-        width: 40px;
-        height: 40px;
-    }
-}
-
-.profiles-kg-menu-button {
-    background: none;
-    border: none;
-    padding: 0;
-    cursor: pointer;
-}
-
-.profiles-kg-pdf-viewer {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-    z-index: 1000;
-    width: 80%;
-    max-width: 800px;
-}
-
-.profiles-kg-close-pdf {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background: #ff0000;
-    color: white;
-    border: none;
-    padding: 8px 16px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: bold;
-    transition: background-color 0.3s ease;
-}
-
-.profiles-kg-close-pdf:hover {
-    background: #cc0000;
-}
-
 .profiles-kg-no-photo,
 .profiles-kg-no-menu,
 .profiles-kg-no-location {
@@ -382,4 +301,120 @@
     object-fit: cover;
     border-radius: 4px;
     cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .profiles-kg-info {
+        grid-template-columns: 1fr;
+        gap: 10px;
+        height: auto;
+        margin: 15px 0;
+    }
+
+    .profiles-kg-info h2 {
+        font-size: 1.1em;
+        margin-bottom: 10px;
+    }
+
+    .profiles-kg-images {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        height: auto;
+        padding: 10px 0;
+    }
+
+    .profiles-kg-image-container {
+        gap: 10px;
+        padding: 15px 5px;
+    }
+
+    .profiles-kg-image-title {
+        font-size: 1.1em;
+        margin-bottom: 8px;
+    }
+
+    .profiles-kg-photo,
+    .profiles-kg-menu,
+    .profiles-kg-maps {
+        width: 100%;
+        max-width: 300px;
+        height: 200px;
+    }
+
+    .profiles-kg-details {
+        grid-template-columns: 1fr;
+        gap: 15px;
+        height: auto;
+        margin-top: 20px;
+    }
+
+    .profiles-kg-info-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 20px;
+    }
+
+    .profiles-kg-labels,
+    .profiles-kg-values {
+        padding-left: 0;
+        text-align: left;
+    }
+
+    .profiles-kg-labels h2,
+    .profiles-kg-values h2 {
+        font-size: 1em;
+        margin: 5px 0;
+    }
+
+    .profiles-kg-social {
+        margin-top: 20px;
+        padding: 10px 0;
+        flex-wrap: wrap;
+    }
+
+    .profiles-kg-social img {
+        width: 40px;
+        height: 40px;
+    }
+
+    .profiles-kg-chart {
+        overflow-y: auto;
+        padding: 15px;
+    }
+
+    .profiles-kg-views h2 {
+        font-size: 1.8em;
+    }
+}
+
+@media (max-width: 480px) {
+    .profiles-kg-photo,
+    .profiles-kg-menu,
+    .profiles-kg-maps {
+        max-width: 250px;
+        height: 180px;
+    }
+
+    .profiles-kg-views h2 {
+        font-size: 1.5em;
+    }
+
+    .profiles-kg-info-row {
+        padding: 0 10px;
+    }
+
+    .profiles-kg-labels h2,
+    .profiles-kg-values h2 {
+        font-size: 0.9em;
+    }
+
+    .profiles-kg-social img {
+        width: 35px;
+        height: 35px;
+    }
+
+    .profiles-kg-image-title {
+        font-size: 1em;
+    }
 } 

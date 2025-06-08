@@ -4,6 +4,11 @@
     box-sizing: border-box;
 }
 
+html, body {
+    min-height: 100%;
+    overflow-x: hidden;
+}
+
 body { /* Contenedor General */
     background-color: #000;
     color: white;
@@ -18,6 +23,7 @@ body { /* Contenedor General */
     display: flex;
     flex-direction: column;
     gap: 30px;
+    overflow-y: auto;
 }
 
 /* Header Section */
@@ -27,6 +33,8 @@ body { /* Contenedor General */
     justify-content: space-between;
     align-items: center;
     padding: 10px 0;
+    flex-wrap: wrap;
+    gap: 20px;
 }
 
 .edit-store-kg-logo {
@@ -38,32 +46,48 @@ body { /* Contenedor General */
     display: flex;
     gap: 20px;
     align-items: center;
+    flex-wrap: wrap;
 }
 
 .edit-store-kg-back {
     background-color: #FFD93D;
     color: black;
-    padding: 10px 30px;
+    padding: 12px 30px;
     border-radius: 25px;
     border: none;
     font-weight: bold;
     cursor: pointer;
     transition: transform 0.3s ease;
+    white-space: nowrap;
 }
 
 .edit-store-kg-register {
     background-color: #0066FF;
     color: white;
-    padding: 10px 30px;
+    padding: 12px 30px;
     border-radius: 25px;
     border: none;
     font-weight: bold;
     cursor: pointer;
     transition: transform 0.3s ease;
+    white-space: nowrap;
+}
+
+.edit-store-kg-delete {
+    background-color: #ff4444;
+    color: white;
+    padding: 12px 30px;
+    border-radius: 25px;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    white-space: nowrap;
 }
 
 .edit-store-kg-back:hover,
-.edit-store-kg-register:hover {
+.edit-store-kg-register:hover,
+.edit-store-kg-delete:hover {
     transform: scale(1.05);
 }
 
@@ -72,7 +96,7 @@ body { /* Contenedor General */
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 40px;
-    padding: 20px;
+    padding: 20px 0;
 }
 
 /* Left Section */
@@ -240,18 +264,172 @@ body { /* Contenedor General */
     color: rgba(255, 255, 255, 0.5);
 }
 
-@media (max-width: 768px) {
+/* Tablet Responsive Design */
+@media screen and (max-width: 1024px) {
     .edit-store-kg-content {
         grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .edit-store-kg-header {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .edit-store-kg-logo {
+        width: 280px;
     }
 
     .edit-store-kg-buttons {
-        flex-direction: column;
+        width: 100%;
+        justify-content: center;
+        gap: 15px;
+    }
+
+    .edit-store-kg-back,
+    .edit-store-kg-register,
+    .edit-store-kg-delete {
+        padding: 8px 20px;
+        font-size: 14px;
+    }
+}
+
+/* Mobile Responsive Design */
+@media screen and (max-width: 768px) {
+    .edit-store-kg-container {
+        padding: 15px;
+    }
+
+    .edit-store-kg-header {
+        gap: 15px;
+    }
+
+    .edit-store-kg-logo {
+        width: 200px;
+        margin: 10px 0;
+    }
+
+    .edit-store-kg-buttons {
+        flex-direction: row;
+        gap: 10px;
+        justify-content: center;
+    }
+
+    .edit-store-kg-back,
+    .edit-store-kg-register,
+    .edit-store-kg-delete {
+        width: auto;
+        min-width: 100px;
+        padding: 8px 15px;
+        font-size: 13px;
+    }
+
+    .edit-store-kg-back {
+        background-color: #FFD93D;
+    }
+
+    .edit-store-kg-register {
+        background-color: #0066FF;
+    }
+
+    .edit-store-kg-delete {
+        background-color: #ff4444;
+    }
+
+    .edit-store-kg-content {
+        gap: 25px;
+        padding: 10px 0;
+    }
+
+    .edit-store-kg-label {
+        font-size: 1.2rem;
+    }
+
+    .edit-store-kg-input {
+        font-size: 1rem;
+        padding: 8px 0;
     }
 
     .edit-store-kg-upload-section {
         flex-direction: column;
         align-items: center;
+    }
+
+    .edit-store-kg-upload-container {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .edit-store-kg-upload-box {
+        width: 100%;
+        height: 200px;
+    }
+
+    .edit-store-kg-social {
+        gap: 12px;
+    }
+
+    .edit-store-kg-social-input-group {
+        padding: 8px;
+    }
+
+    .edit-store-kg-social-icon {
+        width: 25px;
+        height: 25px;
+    }
+
+    .edit-store-kg-social-input {
+        font-size: 14px;
+    }
+
+    .edit-store-kg-photos-grid {
+        gap: 8px;
+    }
+
+    .edit-store-kg-photo-container {
+        width: 120px;
+        height: 120px;
+    }
+}
+
+/* Extra Small Devices */
+@media screen and (max-width: 480px) {
+    .edit-store-kg-container {
+        padding: 10px;
+    }
+
+    .edit-store-kg-logo {
+        width: 180px;
+    }
+
+    .edit-store-kg-buttons {
+        gap: 8px;
+    }
+
+    .edit-store-kg-back,
+    .edit-store-kg-register,
+    .edit-store-kg-delete {
+        padding: 6px 12px;
+        font-size: 12px;
+        min-width: 80px;
+    }
+
+    .edit-store-kg-label {
+        font-size: 1.1rem;
+    }
+
+    .edit-store-kg-upload-box {
+        height: 180px;
+    }
+
+    .edit-store-kg-photo-container {
+        width: 100px;
+        height: 100px;
+    }
+
+    .edit-store-kg-social-input-group {
+        padding: 6px;
     }
 }
 
@@ -377,28 +555,6 @@ body { /* Contenedor General */
     stroke-width: 10;
     stroke-dasharray: 10,15;
     fill: none;
-}
-
-.edit-store-kg-delete {
-    background-color: #ff4444;
-    color: white;
-    padding: 10px 30px;
-    border-radius: 25px;
-    border: none;
-    font-weight: bold;
-    cursor: pointer;
-    transition: transform 0.3s ease;
-}
-
-.edit-store-kg-delete:hover {
-    transform: scale(1.05);
-    background-color: #ff0000;
-}
-
-.edit-store-kg-delete:disabled {
-    opacity: 0.7;
-    cursor: not-allowed;
-    background-color: #ff6666;
 }
 
 .edit-store-kg-photos-grid {

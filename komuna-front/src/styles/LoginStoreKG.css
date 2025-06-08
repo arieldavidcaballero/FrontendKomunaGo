@@ -4,18 +4,25 @@
     box-sizing: border-box;
 }
 
+html, body {
+    min-height: 100%;
+    overflow-x: hidden;
+}
+
 .login-store-kg-container {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100vw;
-    height: 100vh;
+    min-height: 100vh;
     background-image: url("../image/Fondo_Inicios2.png") !important;
     background-repeat: no-repeat;
-    background-size: 100% 100%;    
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    padding: 20px;
+    overflow-y: auto;
 }
-
-
 
 @keyframes glowBorder {
     0% {
@@ -33,20 +40,20 @@
     margin: 20px;
     background: rgb(0, 0, 0);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-    width: 100%;
+    width: 90%;
     max-width: 500px;
     padding: 2rem;
     position: relative;
     animation: glowBorder 2s infinite ease-in-out;
-    border: 10px dashed white ;
-    border-radius: 5% ;
-    animation: glowBorder 2s infinite ease-in-out ;
+    border: 10px dashed white;
+    border-radius: 5%;
 }
 
 .login-store-kg-back-container {
     position: absolute;
     top: 10px;
     left: 20px;
+    z-index: 2;
 }
 
 .login-store-kg-back-button {
@@ -63,7 +70,7 @@
 
 .login-store-kg-back-icon {
     width: 40px;
-    height: auto ;
+    height: auto;
 }
 
 /* Contenedor de logos */
@@ -73,17 +80,17 @@
     display: flex;
     flex-direction: row;
     gap: 1.5rem;
-    margin-bottom: 2rem;
-    margin-top: 2rem;
+    margin: 2.5rem 0;
 }
 
 .login-store-kg-logo {
-    width: 300px;
+    width: 100%;
+    max-width: 300px;
     height: auto;
 }
 
 .login-store-kg-store-logo {
-    width: 70px;
+    width: 100px;
     height: auto;
     border-radius: 10px;
 }
@@ -92,7 +99,6 @@
 .login-store-kg-form {
     display: flex;
     flex-direction: column;
-    
     gap: 1.5rem;
     margin-bottom: 2rem;
 }
@@ -103,22 +109,19 @@
 
 .login-store-kg-input {
     width: 100%;
-    font-size: 1rem;
-    transition: border-color 0.3s ease;
-
-    background-color: black ;
-    color: white ;
-    border: 4px solid white ; /* cambia dashed por solid */
-    border-radius: 20px ;
-    padding: 10px 10px ;
-    font-size: 20px ;
-    outline: none ;
+    background-color: black;
+    color: white;
+    border: 4px solid white;
+    border-radius: 20px;
+    padding: 12px 15px;
+    font-size: 16px;
+    outline: none;
+    transition: all 0.3s ease;
 }
 
 .login-store-kg-input:focus {
     border-color: #4a90e2;
-    outline: none;
-    box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
+    box-shadow: 0 0 10px rgba(74, 144, 226, 0.3);
 }
 
 .login-store-kg-input::placeholder {
@@ -136,44 +139,45 @@ select.login-store-kg-input {
 
 /* Botón de registro */
 .login-store-kg-register-container {
-    margin-bottom: 1rem;
+    margin: 2rem 0;
     display: flex;
     justify-content: center;
     align-items: center;
-
 }
 
 .login-store-kg-register-button {
     width: 80%;
-    background: linear-gradient(to right, #0057FF, #C157FF); /* Degradado azul a morado */
-    color: white ;
-    font-weight: bold ;
-    font-size: 16px ;
-    border: 2px solid white ;
-    border-radius: 25px ;
-    padding: 10px 25px ;
-    cursor: pointer ;
-    text-transform: uppercase ;
-    transition: 0.3s ease-in-out ;
+    background: linear-gradient(to right, #0057FF, #C157FF);
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    border: 2px solid white;
+    border-radius: 25px;
+    padding: 12px 25px;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: 0.3s ease-in-out;
 }
 
 .login-store-kg-register-button:hover {
-    transform: scale(1.05) ;
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.8) ;
+    transform: scale(1.05);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
 }
 
 .login-store-kg-register-button:active {
-    transform: scale(0.95) ;
+    transform: scale(0.95);
 }
 
 .login-store-kg-register-button:disabled {
-    background-color: #cccccc;
+    background: #666;
     cursor: not-allowed;
+    transform: none;
 }
 
 /* Botón de ayuda */
 .login-store-kg-help-container {
     text-align: center;
+    margin: 1rem 0;
 }
 
 .login-store-kg-help-button {
@@ -181,7 +185,7 @@ select.login-store-kg-input {
     border: none;
     color: white;
     cursor: pointer;
-    padding: 0;
+    padding: 8px 16px;
 }
 
 .login-store-kg-help-button h3 {
@@ -191,54 +195,87 @@ select.login-store-kg-input {
 }
 
 .login-store-kg-help-button:hover h3 {
-    color: #357abd;
+    color: #00c8ff;
 }
 
-/* Estilos responsivos */
-@media (max-width: 768px) {
+.login-store-kg-error {
+    color: white;
+    background-color: rgba(255, 0, 0, 0.2);
+    padding: 12px;
+    border-radius: 10px;
+    margin: 10px 0;
+    text-align: center;
+    font-size: 14px;
+    border: 1px solid #ff9999;
+}
+
+/* Tablet Responsive Design */
+@media screen and (max-width: 768px) {
     .login-store-kg-chart {
+        width: 95%;
         padding: 1.5rem;
     }
 
     .login-store-kg-logo {
-        width: 150px;
+        max-width: 250px;
     }
 
     .login-store-kg-store-logo {
-        width: 100px;
+        width: 90px;
+    }
+
+    .login-store-kg-input {
+        font-size: 15px;
+        padding: 10px 15px;
     }
 }
 
-@media (max-width: 480px) {
-    .login-store-kg-chart {
-        padding: 1rem;
+/* Mobile Responsive Design */
+@media screen and (max-width: 480px) {
+    .login-store-kg-container {
+        padding: 10px;
     }
 
-    .login-store-kg-back-container {
-        top: 10px;
-        left: 10px;
+    .login-store-kg-chart {
+        margin: 10px;
+        padding: 1.5rem 1rem;
+        border-width: 7px;
+    }
+
+    .login-store-kg-back-icon {
+        width: 30px;
+    }
+
+    .login-store-kg-logo-container {
+        gap: 1rem;
+        margin: 2rem 0;
     }
 
     .login-store-kg-logo {
-        width: 120px;
+        max-width: 200px;
     }
 
     .login-store-kg-store-logo {
         width: 80px;
     }
 
-    .login-store-kg-input {
-        padding: 10px 12px;
+    .login-store-kg-form {
+        gap: 1rem;
     }
-}
 
-.login-store-kg-error {
-    color: #ff3333;
-    background-color: #ffebeb;
-    padding: 10px;
-    border-radius: 4px;
-    margin: 10px 0;
-    text-align: center;
-    font-size: 14px;
-    border: 1px solid #ff9999;
+    .login-store-kg-input {
+        font-size: 14px;
+        padding: 10px 12px;
+        border-width: 3px;
+    }
+
+    .login-store-kg-register-button {
+        width: 90%;
+        font-size: 14px;
+        padding: 10px 20px;
+    }
+
+    .login-store-kg-help-button h3 {
+        font-size: 0.9rem;
+    }
 } 

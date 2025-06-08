@@ -4,16 +4,25 @@
     box-sizing: border-box;
 }
 
+html, body {
+    min-height: 100%;
+    overflow-x: hidden;
+}
+
 .register-kg-container { 
     width: 100vw;
-    height: 100vh;
-    background-image: url("../image/Fondo_Inicios2.png") ;
+    min-height: 100vh;
+    background-image: url("../image/Fondo_Inicios2.png");
     background-repeat: no-repeat;
-    background-size: 100% 100%;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    padding: 20px;
+    overflow-y: auto;
 }
 
 @keyframes glowBorder {
@@ -32,7 +41,7 @@
     margin: 20px;
     background: rgb(0, 0, 0);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-    width: 100%;
+    width: 90%;
     max-width: 500px;
     padding: 2rem;
     position: relative;
@@ -46,6 +55,7 @@
     top: 10px;
     left: 20px;
     background: transparent;
+    z-index: 2;
 }
 
 .register-kg-back-button {
@@ -74,22 +84,28 @@
     justify-content: center ;
     align-items: center ;
     gap: 20px ;
+    margin: 1rem 0;
 }
 
 .register-kg-logo {
-    width: 300px ;
-    height: auto ;
+    width: 100%;
+    max-width: 300px;
+    height: auto;
 }
 
 .register-kg-store-logo {
-    width: 200px ;
-    height: auto ;
+    width: 100%;
+    max-width: 280px;
+    height: auto;
+    margin: 1.5rem 0;
 }
 
 .register-kg-form { /* Contenerdo Tres */
     display: flex ;
     align-items: center ;
     flex-direction: row ;
+    width: 100%;
+    margin: 1rem 0;
 }
 
 .register-kg-input-group { /* Contenedor Tres Cero */
@@ -110,20 +126,21 @@
     border: 4px solid white;
     border-radius: 20px;
     padding: 10px;
-    font-size: 20px;
+    font-size: 16px;
     outline: none;
     height: 45px; /* Altura fija para el input */
 }
 
 .register-kg-enter-button {
     width: 50px; /* Reducido para que coincida con la altura del input */
-    height: auto; /* Altura fija para mantener proporción */
+    height: 45px;
     padding: 0;
     margin-left: -5px; /* Acerca el botón al input */
     transition: transform 0.2s ease;
     display: flex;
     align-items: center;
     border: 0;
+    background: transparent;
 }
 
 .register-kg-enter-button img {
@@ -186,6 +203,8 @@
     justify-content: center;
     align-items: center;
     gap: 20px;
+    flex-wrap: wrap;
+    margin: 1rem 0;
 }
 
 .register-kg-link {
@@ -197,6 +216,7 @@
     cursor: pointer;
     padding: 8px 16px;
     font-weight: bold;
+    white-space: nowrap;
 }
 
 .register-kg-link:hover {
@@ -204,8 +224,85 @@
 }
 
 .register-kg-help-container { /* Contenedor Cinco */
-    height: 20vh ;
+    height: auto;
+    min-height: 15vh;
     display: flex ;
     justify-content: center ;
     align-items: center ;
+    margin-top: 1rem;
+}
+
+.login-store-kg-logo {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+}
+
+/* Tablet Responsive Design */
+@media screen and (max-width: 768px) {
+    .register-kg-chart {
+        width: 95%;
+        padding: 1.5rem;
+    }
+
+    .register-kg-store-logo {
+        max-width: 240px;
+    }
+
+    .register-kg-input {
+        font-size: 14px;
+    }
+}
+
+/* Mobile Responsive Design */
+@media screen and (max-width: 480px) {
+    .register-kg-container {
+        padding: 10px;
+    }
+
+    .register-kg-chart {
+        margin: 10px;
+        padding: 1.5rem 1rem;
+        border-width: 7px;
+    }
+
+    .register-kg-back-icon {
+        width: 30px;
+    }
+
+    .register-kg-store-logo {
+        max-width: 200px;
+        margin: 2rem 0;
+    }
+
+    .register-kg-input-group {
+        padding: 5px;
+    }
+
+    .register-kg-input {
+        height: 40px;
+        font-size: 14px;
+        padding: 8px;
+        border-width: 3px;
+    }
+
+    .register-kg-enter-button {
+        width: 40px;
+        height: 40px;
+    }
+
+    .register-kg-footer {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .register-kg-link {
+        font-size: 14px;
+        padding: 6px 12px;
+    }
+
+    .login-store-kg-logo {
+        max-width: 250px;
+        margin: 1rem 0;
+    }
 }
