@@ -64,12 +64,22 @@ export default function ProfilesKG() {
                         <div className="profiles-kg-image-container">
                             <div className="profiles-kg-image-title">Menú</div>
                             {store.menu ? (
-                                <img 
-                                    className="profiles-kg-menu" 
-                                    src={store.menu} 
-                                    alt="Menú del Local"
-                                    onClick={() => handleImageClick(store.menu, true)}
-                                />
+                                store.menu.startsWith('data:image/') ? (
+                                    <img
+                                        className="profiles-kg-photo"
+                                        src={store.menu}
+                                        alt="Menú del Local"
+                                        onClick={() => handleImageClick(store.menu)}
+                                    />
+                                ) : (
+                                    <embed
+                                        className="profiles-kg-menu"
+                                        src={store.menu}
+                                        type="application/pdf"
+                                        alt="Menú del Local"
+                                        onClick={() => handleImageClick(store.menu, true)}
+                                    />
+                                )
                             ) : (
                                 <div className="profiles-kg-no-menu">Sin menú</div>
                             )}

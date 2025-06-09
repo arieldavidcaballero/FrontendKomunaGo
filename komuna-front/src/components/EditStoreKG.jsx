@@ -91,12 +91,12 @@ const EditStoreKG = () => {
         if (!file) return;
 
         // Validar tipo de archivo
-        if (type === 'menu' && file.type !== 'application/pdf') {
-            setError('El menú debe ser un archivo PDF');
-            return;
-        }
-
-        if (type === 'foto' && !file.type.startsWith('image/')) {
+        if (type === 'menu') {
+            if (!file.type.startsWith('image/') && file.type !== 'application/pdf') {
+                setError('El menú debe ser un archivo de imagen o un PDF');
+                return;
+            }
+        } else if (type === 'foto' && !file.type.startsWith('image/')) {
             setError('Por favor seleccione un archivo de imagen válido');
             return;
         }
@@ -142,17 +142,28 @@ const EditStoreKG = () => {
     };
 
     // Función para previsualizar PDF
-    const renderPDFPreview = (pdfData) => {
-        if (!pdfData) return null;
-        return (
-            <embed
-                src={pdfData}
-                type="application/pdf"
-                width="100%"
-                height="100%"
-                style={{ borderRadius: '8px' }}
-            />
-        );
+    const renderMenuPreview = (menuData) => {
+        if (!menuData) return null;
+        if (menuData.startsWith('data:image/')) {
+            return (
+                <img
+                    src={menuData}
+                    alt="Menú Preview"
+                    style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '8px' }}
+                />
+            );
+        } else if (menuData.startsWith('data:application/pdf')) {
+            return (
+                <embed
+                    src={menuData}
+                    type="application/pdf"
+                    width="100%"
+                    height="100%"
+                    style={{ borderRadius: '8px' }}
+                />
+            );
+        }
+        return null;
     };
 
     const handleSubmit = async (e) => {
@@ -357,17 +368,17 @@ const EditStoreKG = () => {
                         </div>
 
                         <div className="edit-store-kg-upload-container">
-                            <h3 className="edit-store-kg-upload-title">Menú (PDF)</h3>
+                            <h3 className="edit-store-kg-upload-title">Menú (Foto)</h3>
                             <label className="edit-store-kg-upload-box">
                                 <input
                                     type="file"
-                                    accept="application/pdf"
+                                    accept="image/*,application/pdf"
                                     onChange={(e) => handleFileUpload('menu', e)}
                                     style={{ display: 'none' }}
                                     disabled={isLoading}
                                 />
                                 {storeData.menu ? (
-                                    renderPDFPreview(storeData.menu)
+                                    renderMenuPreview(storeData.menu)
                                 ) : (
                                     <img src={UploadIcon} alt="Subir menú" className="edit-store-kg-upload-icon" />
                                 )}
