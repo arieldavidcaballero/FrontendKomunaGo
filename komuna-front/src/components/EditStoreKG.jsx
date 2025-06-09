@@ -37,7 +37,7 @@ const EditStoreKG = () => {
         cupoPersonas: '',
         horarioLaboral: '',
         categoria: '',
-        fotos: [],
+        fotos: '',
         menu: null,
         whatsappUrl: '',
         tiktokUrl: '',
@@ -61,7 +61,7 @@ const EditStoreKG = () => {
                     cupoPersonas: vendedor.cupo_personas || '',
                     horarioLaboral: vendedor.horario || '',
                     categoria: vendedor.tipo_negocio,
-                    fotos: ensureArray(vendedor.fotos),
+                    fotos: vendedor.fotos || '',
                     menu: vendedor.menu,
                     whatsappUrl: vendedor.redes_sociales?.whatsapp || '',
                     tiktokUrl: vendedor.redes_sociales?.tiktok || '',
@@ -105,19 +105,13 @@ const EditStoreKG = () => {
             const reader = new FileReader();
             reader.onload = async (event) => {
                 const base64 = event.target.result;
+                console.log('Generated Base64 string:', base64);
                 
                 if (type === 'foto') {
-                    // Si ya hay fotos, reemplazar la primera (para LoginTouristKG)
-                    // o agregar si no hay ninguna
-                    setStoreData(prevState => {
-                        const currentFotos = Array.isArray(prevState.fotos) ? prevState.fotos : [];
-                        return {
-                            ...prevState,
-                            fotos: currentFotos.length > 0 
-                                ? [base64, ...currentFotos.slice(1)]
-                                : [base64]
-                        };
-                    });
+                    setStoreData(prevState => ({
+                        ...prevState,
+                        fotos: base64
+                    }));
                 } else {
                     setStoreData(prevState => ({
                         ...prevState,
@@ -188,11 +182,13 @@ const EditStoreKG = () => {
                 }
             });
 
+            console.log('Sending storeData to backend:', storeData);
+
             // Actualizar el estado con los datos devueltos por el servidor
             setStoreData(prevState => ({
                 ...prevState,
                 menu: response.menu,
-                fotos: ensureArray(response.fotos)
+                fotos: response.fotos
             }));
 
             Swal.fire('Perfil actualizado exitosamente');
@@ -350,14 +346,9 @@ const EditStoreKG = () => {
                                     style={{ display: 'none' }}
                                     disabled={isLoading}
                                 />
-                                {console.log('Value of storeData.fotos before map:', storeData.fotos, 'Is Array:', Array.isArray(storeData.fotos))}
-                                {Array.isArray(storeData.fotos) && storeData.fotos.length > 0 ? (
-                                    <div className="edit-store-kg-photos-grid">
-                                        {Array.from(storeData.fotos).map((foto, index) => (
-                                            <div key={index} className="edit-store-kg-photo-container">
-                                                {renderImagePreview(foto)}
-                                            </div>
-                                        ))}
+                                {storeData.fotos ? (
+                                    <div className="edit-store-kg-photo-container">
+                                        {renderImagePreview(storeData.fotos)}
                                     </div>
                                 ) : (
                                     <img src={UploadIcon} alt="Subir foto" className="edit-store-kg-upload-icon" />

@@ -22,7 +22,7 @@ export default function LoginTouristKG() {
                 id: vendedor.id,
                 name: vendedor.nombre_tienda,
                 categoriaLocal: vendedor.tipo_negocio,
-                image: vendedor.fotos?.[0] || null,
+                image: vendedor.fotos || null,
                 menu: vendedor.menu,
                 cupo_personas: vendedor.cupo_personas,
                 horario: vendedor.horario,
