@@ -8,6 +8,25 @@ import InstagramIcon from '../image/InstagramIcon.png';
 import FacebookIcon from '../image/FacebookIcon.png';
 import UploadIcon from '../image/SubirImagenIcono.png';
 import '../styles/EditStoreKG.css';
+import Swal from 'sweetalert2';
+
+const ensureArray = (data) => {
+    if (Array.isArray(data)) {
+        return data;
+    }
+    if (typeof data === 'string') {
+        try {
+            const parsedData = JSON.parse(data);
+            if (Array.isArray(parsedData)) {
+                return parsedData;
+            }
+            return parsedData ? [parsedData] : [];
+        } catch (e) {
+            return [data];
+        }
+    }
+    return data ? [data] : [];
+};
 
 const EditStoreKG = () => {
     const navigate = useNavigate();
@@ -42,7 +61,7 @@ const EditStoreKG = () => {
                     cupoPersonas: vendedor.cupo_personas || '',
                     horarioLaboral: vendedor.horario || '',
                     categoria: vendedor.tipo_negocio,
-                    fotos: vendedor.fotos || [],
+                    fotos: ensureArray(vendedor.fotos),
                     menu: vendedor.menu,
                     whatsappUrl: vendedor.redes_sociales?.whatsapp || '',
                     tiktokUrl: vendedor.redes_sociales?.tiktok || '',
@@ -90,12 +109,15 @@ const EditStoreKG = () => {
                 if (type === 'foto') {
                     // Si ya hay fotos, reemplazar la primera (para LoginTouristKG)
                     // o agregar si no hay ninguna
-                    setStoreData(prevState => ({
-                        ...prevState,
-                        fotos: prevState.fotos.length > 0 
-                            ? [base64, ...prevState.fotos.slice(1)]
-                            : [base64]
-                    }));
+                    setStoreData(prevState => {
+                        const currentFotos = Array.isArray(prevState.fotos) ? prevState.fotos : [];
+                        return {
+                            ...prevState,
+                            fotos: currentFotos.length > 0 
+                                ? [base64, ...currentFotos.slice(1)]
+                                : [base64]
+                        };
+                    });
                 } else {
                     setStoreData(prevState => ({
                         ...prevState,
@@ -170,10 +192,10 @@ const EditStoreKG = () => {
             setStoreData(prevState => ({
                 ...prevState,
                 menu: response.menu,
-                fotos: response.fotos
+                fotos: ensureArray(response.fotos)
             }));
 
-            alert('Perfil actualizado exitosamente');
+            Swal.fire('Perfil actualizado exitosamente');
         } catch (error) {
             setError('Error al actualizar el perfil. Por favor intente nuevamente.');
         } finally {
@@ -188,8 +210,20 @@ const EditStoreKG = () => {
             return;
         }
 
-        const confirmDelete = window.confirm('¿Estás seguro que deseas eliminar tu tienda? Esta acción no se puede deshacer.');
-        if (!confirmDelete) return;
+        const confirmDelete = await Swal.fire({
+            title: '¿Estás seguro?',
+            text: 'Esta acción no se puede deshacer.',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Sí, eliminar',
+            cancelButtonText: 'Cancelar'
+        });
+
+        if (!confirmDelete.isConfirmed) {
+            return;
+        }
 
         setIsLoading(true);
         setError('');
@@ -202,7 +236,7 @@ const EditStoreKG = () => {
             window.dispatchEvent(event);
             
             localStorage.removeItem('vendedorId');
-            alert('Tienda eliminada exitosamente');
+            Swal.fire('Tienda eliminada exitosamente');
             navigate('/');
         } catch (error) {
             setError('Error al eliminar la tienda. Por favor intente nuevamente.');
@@ -316,9 +350,10 @@ const EditStoreKG = () => {
                                     style={{ display: 'none' }}
                                     disabled={isLoading}
                                 />
-                                {storeData.fotos.length > 0 ? (
+                                {console.log('Value of storeData.fotos before map:', storeData.fotos, 'Is Array:', Array.isArray(storeData.fotos))}
+                                {Array.isArray(storeData.fotos) && storeData.fotos.length > 0 ? (
                                     <div className="edit-store-kg-photos-grid">
-                                        {storeData.fotos.map((foto, index) => (
+                                        {Array.from(storeData.fotos).map((foto, index) => (
                                             <div key={index} className="edit-store-kg-photo-container">
                                                 {renderImagePreview(foto)}
                                             </div>

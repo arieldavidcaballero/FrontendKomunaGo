@@ -6,6 +6,7 @@ import LogoKomunaGO from '../image/Logo_KomunaGO.png';
 import LogoTienda from '../image/Logo-Tienda.jpg';
 import Atras from '../image/Atras.png';
 import entrar from '../image/BEnter.jpg';
+import Swal from 'sweetalert2';
 
 const Register = () => {
     const navigate = useNavigate();
@@ -42,18 +43,20 @@ const Register = () => {
         if (email) {
             try {
                 await vendedorService.recuperarCodigo(email);
-                alert('Si el correo está registrado, recibirá el código de acceso.');
+                Swal.fire('Éxito', 'Si el correo está registrado, recibirá el código de acceso.', 'success');
             } catch (error) {
-                alert('Hubo un error al procesar su solicitud. Por favor intente nuevamente.');
+                Swal.fire('Error', 'Hubo un error al procesar su solicitud. Por favor intente nuevamente.', 'error');
             }
         }
     };
 
     const helpMessage = () => {
-        alert("Para registrarte, sigue estos pasos:\n\n" +
-            "1️⃣ Ingresa el nombre del local.\n" +
-            "2️⃣ Introduce tu correo electrónico (sirve para recuperar tu código si lo pierdes).\n" +
-            "3️⃣ Selecciona la categoría del local (solo puedes elegir entre las opciones disponibles).");
+        Swal.fire({
+            title: 'Para registrarte, sigue estos pasos:',
+            text: '1️⃣ Ingresa el nombre del local.\n2️⃣ Introduce tu correo electrónico (sirve para recuperar tu código si lo pierdes).\n3️⃣ Selecciona la categoría del local (solo puedes elegir entre las opciones disponibles).',
+            icon: 'info',
+            confirmButtonText: 'Aceptar'
+        });
     };
 
     return (

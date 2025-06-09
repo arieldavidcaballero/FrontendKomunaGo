@@ -5,6 +5,7 @@ import LogoKomunaGO from '../image/Logo_KomunaGO.png';
 import LogoTienda from '../image/Logo-Tienda.jpg';
 import AtrasIcon from '../image/Atras.png';
 import '../styles/LoginStoreKG.css';
+import Swal from 'sweetalert2';
 
 export default function LoginStoreKG() {
     const navigate = useNavigate();
@@ -37,7 +38,12 @@ export default function LoginStoreKG() {
                 categoriaLocal: formData.categoriaLocal
             });
 
-            alert(response.message);
+            Swal.fire({
+                title: 'Registro exitoso',
+                text: response.message,
+                icon: 'success',
+                confirmButtonText: 'Aceptar'
+            });
             navigate('/'); // Redirigir al inicio para que ingrese con el código
         } catch (err) {
             setError(err.error || 'Error al registrar el local. Por favor intente nuevamente.');
@@ -47,13 +53,16 @@ export default function LoginStoreKG() {
     };
 
     const handleHelp = () => {
-        alert(
-            "Para registrarte, sigue estos pasos:\n\n" +
-            "1️⃣ Ingresa el nombre del local.\n" +
-            "2️⃣ Introduce tu correo electrónico (sirve para recuperar tu código si lo pierdes).\n" +
-            "3️⃣ Selecciona la categoría del local (solo puedes elegir entre las opciones disponibles).\n" +
-            "4️⃣ Recibirás un código único en tu correo para acceder a tu perfil."
-        );
+        Swal.fire({
+            title: '¿Cómo registrarse?',
+            text: "Para registrarte, sigue estos pasos:\n\n" +
+                "1️⃣ Ingresa el nombre del local.\n" +
+                "2️⃣ Introduce tu correo electrónico (sirve para recuperar tu código si lo pierdes).\n" +
+                "3️⃣ Selecciona la categoría del local (solo puedes elegir entre las opciones disponibles).\n" +
+                "4️⃣ Recibirás un código único en tu correo para acceder a tu perfil.",
+            icon: 'info',
+            confirmButtonText: 'Aceptar'
+        });
     };
 
     return (

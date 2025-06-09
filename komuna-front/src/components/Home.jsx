@@ -29,6 +29,7 @@ export default function Home() {
                     <div className="containerLoginTueistHome">
                         <img className="buttonImg" src={BTurista} alt="button 2" /> 
                     </div>
+                    <data value=""></data>
                 </Link>
             </div>
         </div>
